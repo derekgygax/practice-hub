@@ -1,6 +1,6 @@
 # IntelliJ IDEA project files
 .idea
-leetcode_java.iml
+*.iml
 
 # Java class output directory
 out
