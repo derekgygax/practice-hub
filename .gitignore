@@ -3,3 +3,7 @@
 
 # Java class output directory
 out
+
+
+# DS store for mac
+.DS_Store
