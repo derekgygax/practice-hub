@@ -1,9 +1,9 @@
 # IntelliJ IDEA project files
 .idea
+leetcode_java.iml
 
 # Java class output directory
 out
-
 
 # DS store for mac
 .DS_Store
