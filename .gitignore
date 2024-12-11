@@ -1,9 +1,11 @@
-# IntelliJ IDEA project files
-.idea
+# Ignore all IntelliJ IDEA project files at any level
+**/.idea/
+
+# Ignore all IntelliJ IDEA '*.iml' files at any level
 *.iml
 
-# Java class output directory
-out
+# Ignore all 'out' directories within any 'java' folder at any level
+**/java/**/out/
 
-# DS store for mac
-.DS_Store
+# Ignore DS_Store files (Mac) at any level
+*.DS_Store
