@@ -16,3 +16,6 @@
 
 # package-lock stuff
 *package-lock.json
+
+# Anything pycache
+*__pycache__
