@@ -4,6 +4,8 @@ Companies for Bioinformatics
   Gingko
   Thermo Fischer
   Roche
+  Eli lilly
+  Nanopore Data
   Intellia
     https://www.intelliatx.com/careers/
   Genetec
