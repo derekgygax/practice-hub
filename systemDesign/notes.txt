@@ -1,0 +1,49 @@
+Banking System
+
+-Creat Users
+-Create Accounts
+-Deposit Money
+-Transfer Funds
+-Stats: Daily, Weekly, Monthly
+
+
+You need to design everything for the system. From the Database to the front end and it all
+
+
+Here are the things I need to think about
+
+-Design a UI for the client to interact with
+-Login, use Oauth that can handle thing
+  -Never pass credentials to the client side, pass back JWT (JSON web tokens)
+-DB for storing information.
+  -Relational DB for number things dealing with the account
+  -NoSQL database for storing documents, such as the signing for opening an account
+-Back end microservice to deal with the relational database stuff like creating an account and transfering
+
+
+Steps:
+  Create users -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

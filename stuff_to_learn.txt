@@ -1,0 +1,32 @@
+Software Stuff
+  -Segment Tree
+  -Dependency Injection
+  -What headers are and authorization and how to use them
+  -How network requests are handled
+
+-KUBERNETES and NExt.js
+	https://medium.com/@martin.hodges/starting-with-next-js-and-kubernetes-349cafdc2aa7
+  
+
+Machine Learning
+  -Take courses to learn about it
+
+
+MIT stuff for coding
+	Augmented Trees - https://www.youtube.com/watch?v=xVka6z1hu-I
+	Dynamic Programming - https://www.youtube.com/watch?v=Tw1k46ywN6E
+
+CRISPR - https://www.youtube.com/watch?v=_L-t7Esup6s
+
+
+Companies for Bioinformatics
+  GeneDx
+  Axel
+  Gingko
+  Thermo Fischer
+  Roche
+  
+
+
+
+https://leetcode.com/problems/rotate-array/description/

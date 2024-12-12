@@ -1,0 +1,75 @@
+Banking System
+
+-Creat Users
+-Create Accounts
+-Deposit Money
+-Transfer Funds
+-Stats: Daily, Weekly, Monthly
+
+
+When doing this we need a few things and I will outline them
+
+- Host on AWS or another cloud service where the backend will be split into microservices.
+There will be a lambda in the cloud service that will allow us to spin up more instances of teh microservices as required
+This will lead to horizontal scaling.
+Have a API gateway that directs the API calls and deals with load balancing
+1. A UI for the user to interact with.
+  - Create User
+  - Create Accounts
+  - Sign in
+  - Deposit
+  - Transfer
+  - See the account
+2. Microservices to manage the backend - all API based
+  a. User Management
+    - POST "user/create"
+    - DELETE "user/delete"
+    - PUT "user/update"
+    - POST "user/login" - Sends back a JWT, NEVER credentials
+    - POST "user/logout"
+    1. DB - relational (Encrypt senstive stuff like email and phone)
+      - user table
+        -id
+        -name
+        -phone
+        -email
+        -approved (t/f) - see if the user matches who they say they
+    2. DB - NoSQL
+      -user_id
+      -govt photo
+      -name
+      So it can be examined and approve the user or not
+  b. Account Management - Will receive the JWTs, NO credentials
+    -POST "account/create" - This will talk to the User Management microserve to get the id of the user then create an account
+    -DELETE "account/{acount_id}" - same but deleting
+    -GET "account/{account_id} - Get information about the account
+    -POST "account/{account_id}/deposit" - same but deposit
+    -POST "account/transfer" - same but transfer money
+    -GET "account/user/{user_id} - get the accounts the user has access to
+    1. DB - relations
+      -account
+        -id
+        -type (checking, savings)
+        -total
+        -approved (True/False)
+      -user_account
+        -user_id
+        -account_id
+      -transaction
+        -id
+        -account_id
+        -from (account_id/Something)
+        -to (account_id)
+        -amount
+        -time
+  c. Stats Management - run automatically - lambda kick it off at the correct time
+    -GET "/stats/daily"
+    -GET "/stats/weekly"
+    -GET "/stats/monthly"
+    1. DB
+      -stats
+        -id
+        -account_id
+        -type (daily/weekly/monthly)
+        -stats stuff (WHAT WOULD THIS BE?)
+        -time

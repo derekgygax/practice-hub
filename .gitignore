@@ -1,5 +1,6 @@
 # Ignore all IntelliJ IDEA project files at any level
 **/.idea/
+*.idea
 
 # Ignore all IntelliJ IDEA '*.iml' files at any level
 *.iml
@@ -9,3 +10,9 @@
 
 # Ignore DS_Store files (Mac) at any level
 *.DS_Store
+
+# all node modules stuff
+*node_modules
+
+# package-lock stuff
+*package-lock.json

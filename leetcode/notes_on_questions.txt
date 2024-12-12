@@ -1,0 +1,1360 @@
+Leetcode questions
+
+
+
+
+IMPORTANT TO LEARN TO USE
+	const count = new Uint8Array(n);
+	Especially for the primes one!!
+
+
+
+
+
+
+
+
+
+* = working
+*** = finish
+
+***Summary Ranges - Easy
+	https://leetcode.com/problems/summary-ranges/description/
+	It took you a while and you made it too complex.
+	Remember that you can loop past what you think if you only work with the previous.
+	Don't save to memory if you don't have to
+
+	You are redoing it and suck at it ... you can't do it this time reallly and you feel stupid as fuck
+	You are diong it over and over and not getting anywher  ... its an easy one
+
+	You got it but you failed so so so many times first ... embarrassing ...
+
+	What you are talking about above is you could loop longer than the array so it be like for (i = 1; i <= array.length; i++)
+
+Better way
+function summaryRanges(nums: number[]): string[] {
+
+    const ranges: string[] = [];
+    let start: number = nums[0];
+    if (nums.length === 1) {
+        return [String(start)];
+    }
+    for (let i: number = 1; i <=nums.length; i++) {
+        if (nums[i] - nums[i-1] === 1) {
+            continue;
+        }
+
+        if (start === nums[i-1]) {
+            ranges.push(String(start));
+        } else {
+            ranges.push(`${start}->${nums[i-1]}`);
+        }
+
+        start = nums[i];
+    }
+    return ranges;
+};
+
+***Binary Tree Pruning - Medium
+	https://leetcode.com/problems/binary-tree-pruning/description/
+	Took you way too long but in the end you did it pretty well I think. But you went back and forth and thought a lot about it while doing other things before anything actually happened.
+First time
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+Wow, you did it exactly the same except better the first time. I didn't expect you to get that that well the first time
+
+const checkNode = (node: TreeNode): TreeNode | null => {
+
+    if (node === null) {
+        return null;
+    }
+
+    const rightNode = checkNode(node.right);
+
+    const leftNode = checkNode(node.left);
+
+    if (rightNode === null && leftNode === null && node.val === 0) {
+        return null;
+    }
+
+    const newNode = new TreeNode(node.val, leftNode, rightNode);
+    return newNode;
+
+}
+
+function pruneTree(root: TreeNode | null): TreeNode | null {
+
+    return checkNode(root);
+    
+
+};
+
+Second time
+
+function pruneTree(root: TreeNode | null): TreeNode | null {
+
+    if (root === null) {
+        return null;
+    }
+
+    const rightNode: TreeNode = pruneTree(root.right);
+    const leftNode: TreeNode = pruneTree(root.left);
+
+    // This covers going all the way down and
+    // then coming up to a 0, which is forgotten
+    if (rightNode === null && leftNode == null && root.val === 0) {
+        return null
+    }
+
+    const newNode: TreeNode = new TreeNode(root.val);
+    newNode.right = rightNode;
+    newNode.left = leftNode;
+
+    return newNode;
+
+};
+
+
+***Odd Even Linked List - Medium
+	https://leetcode.com/problems/odd-even-linked-list/description/
+	You SUCK at this! Like really really bad. You got it in the end, but you were dumb about it.
+
+FIRST time
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function oddEvenList(head: ListNode | null): ListNode | null {
+
+    if (head === null) {
+        return null;
+    }
+    if (head.next == null) {
+        return head;
+    }
+    
+    let isOdd = true;
+    let isFirst = true;
+    let previousEven: ListNode;
+    let previousOdd: ListNode;
+    let node: ListNode = head;
+    let evenList: ListNode;
+    let oddList: ListNode;
+    while (node !== null) {
+        const newNode = new ListNode(node.val);
+        if (isFirst && isOdd) {
+            oddList = newNode;
+            isOdd = false;
+            previousOdd = newNode;
+            node = node.next;
+            continue;
+        }
+        if (isFirst && !isOdd) {
+            evenList = newNode;
+            isOdd = true;
+            isFirst = false;
+            previousEven = newNode;
+            node = node.next;
+            continue; 
+        }
+
+        if (isOdd) {
+            previousOdd.next = newNode;
+            previousOdd = newNode;
+        } else {
+            previousEven.next = newNode;
+            previousEven = newNode;
+        }
+
+        node = node.next;
+        
+        isOdd = !isOdd;
+    }
+
+    previousOdd.next = evenList;
+
+    return oddList;
+};
+SECOND
+
+Fuck it, but it seems the referencing is just point at it once ...
+
+***Word Pattern - Easy
+	https://leetcode.com/problems/word-pattern/description/
+	Easier but you still didn't do very well.
+	You fuck up because again you don't think of all the problems that could be. Like what about patter = "abba" words = "dog dog dog dog"
+			This would be a problem because a and b can't both be dog, then the pattern isn't kept up!!
+			You need to be able to think of all scenarios that could be an issue, you aren't good at that now
+			You even knew there was something to remember but couldn't remember what it was. Fuck you Derek
+
+They are the same ... god and i know you made the same mistake the first time. You need to make sure you understand the question!!!
+First time
+function wordPattern(pattern: string, s: string): boolean {
+
+    const patternWord = new Map<string, string>();
+    const wordsUsed = new Set<string>([]);
+    const words = s.split(" ");
+
+    if (pattern.length !== words.length) {
+        return false;
+    }
+
+    for (let i: number = 0; i < pattern.length; i++) {
+        const letter: string = pattern[i];
+        const word: string = words[i];
+        if (patternWord.has(letter)) {
+            if (word !== patternWord.get(letter)) {
+                return false;
+            }
+        } else {
+            console.log(letter, word);
+            if (wordsUsed.has(word)) {
+                return false;
+            }
+            wordsUsed.add(word);
+            patternWord.set(letter, word);
+        }
+    }
+    return true;
+};
+
+Second Time - after failing the first time. REMEMBE THE THING YOU WROTE ABOVE!!
+function wordPattern(pattern: string, s: string): boolean {
+    
+    const patWord : {[key: string]: string} = {};
+    const words = s.split(" ");
+    const wordsUsed: Set<string> = new Set<string>();
+    if (words.length !== pattern.length) {
+        return false;
+    }
+    
+    for (let i: number = 0; i < pattern.length; i++) {
+
+        if (pattern[i] in patWord) {
+            if (patWord[pattern[i]] !== words[i]) {
+                return false;
+            }
+        } else {
+            if (wordsUsed.has(words[i])) {
+                return false;
+            }
+            patWord[pattern[i]] = words[i];
+            wordsUsed.add(words[i]);
+        }
+
+    }
+    return true;
+};
+
+
+
+***Copy List with Random Pointer - Medium
+	https://leetcode.com/problems/copy-list-with-random-pointer/description/
+	This looks hard
+	I got this and actually did pretty well ... here is my answer
+
+/**
+ * Definition for _Node.
+ * class _Node {
+ *     val: number
+ *     next: _Node | null
+ *     random: _Node | null
+ * 
+ *     constructor(val?: number, next?: _Node, random?: _Node) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *         this.random = (random===undefined ? null : random)
+ *     }
+ * }
+ */
+
+
+function copyRandomList(head: _Node | null): _Node | null {
+    
+    let newHead: _Node;
+    let prevNode: _Node;
+    let first: boolean = true;
+    let nodes: Map<_Node, number> = new Map<_Node, number>();
+    let nodesNeeding: Map<_Node, _Node> = new Map<_Node, _Node>;
+    let newNodes: _Node[] = [];
+    let index: number = 0;
+    while (head !== null) {
+        nodes.set(head, index);
+        const newNode = new _Node(head.val);
+        newNodes.push(newNode);
+
+        let need: boolean = true;
+        if (head.random === null) {
+            newNode.random == null;
+            need = false;
+        }
+        if (nodes.has(head.random)) {
+            newNode.random = newNodes[nodes.get(head.random)];
+            need = false;
+        }
+
+        if (need) {
+            nodesNeeding.set(head, head.random);
+        }
+
+        if (first) {
+            first = false;
+            newHead = newNode;
+            prevNode = newNode;
+        } else {
+            prevNode.next = newNode;
+            prevNode = newNode;
+        }
+        index++;
+        head = head.next;
+    }
+
+    for (let [key, value] of nodesNeeding) {
+        newNodes[nodes.get(key)].random = newNodes[nodes.get(value)];
+    }
+
+    return newHead;
+
+};
+
+I used some help from chatgpt but I feel like I did alright here ... again remember each node is itself with references around. The whole list of nodes doesn't come with it
+
+This way is faster ... but I was trying to avoid looping twice which he did ... but this is faster and better organized
+function copyRandomList(head: Node | null): Node | null {
+    if(head == null){
+        return null;
+    }
+    let current = head;
+    let map = new Map();
+    while(current){
+        map.set(current, new Node(current.val, null, null));
+        current = current.next;
+    }
+
+    current = head;
+
+    while(current){
+        let n = map.get(current);
+        n.next = map.get(current.next) || null;
+        n.random = map.get(current.random) || null;
+        current = current.next;
+    }
+    
+    return map.get(head);
+
+};
+
+My second time
+/**
+ * Definition for _Node.
+ * class _Node {
+ *     val: number
+ *     next: _Node | null
+ *     random: _Node | null
+ * 
+ *     constructor(val?: number, next?: _Node, random?: _Node) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *         this.random = (random===undefined ? null : random)
+ *     }
+ * }
+ */
+
+const setRandom = (oldNode, newNode, oldNew): boolean => {
+    if (oldNode.random === null) {
+        newNode.random = null;
+        return true;
+    }
+
+    if (oldNew.has(oldNode.random)) {
+        newNode.random = oldNew.get(oldNode.random);
+        return true;
+    }
+
+    return false;
+
+}
+
+function copyRandomList(head: _Node | null): _Node | null {
+
+    if (head == null) {
+        return null;
+    }
+
+    const newHead: _Node = new _Node(head.val);
+
+
+    let prevHead: _Node = newHead;
+
+    const notAssigned: Map<_Node, _Node> = new Map<_Node, _Node>();
+    const oldNew: Map<_Node, _Node> = new Map<_Node, _Node>();
+    oldNew.set(head, newHead);
+
+    if (!setRandom(head, newHead, oldNew)) {
+        notAssigned.set(newHead, head);
+    }
+
+    head = head.next;
+
+    while (head !== null) {
+        const newNode: _Node = new _Node(head.val);
+
+        oldNew.set(head, newNode);
+
+        if (!setRandom(head, newNode, oldNew)) {
+            notAssigned.set(newNode, head);
+        }
+
+        prevHead.next = newNode;
+        prevHead = newNode;
+        head = head.next;
+    }
+
+    for (const [key, value] of notAssigned) {
+        key.random = oldNew.get(value.random);
+    }
+
+    return newHead;
+};
+
+
+
+
+***Greatest Common Divisor of Strings - Easy
+	https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
+	I got it but apparently its slow and shit. oh well, I did it
+
+FIRST
+function gcdOfStrings(str1: string, str2: string): string {
+    const examineString: string = str1.length < str2.length ? str1 : str2;
+    let divisor: string = '';
+    let workingDivisor: string = '';
+    // The stupid string has to be divided it says so it can't be the whole string.
+    // Then at most it could be half the length so you can use it this way
+    for (let i: number = 0; i < examineString.length; i++) {
+        divisor += examineString[i];
+
+        // If the second word doesn't have the divisor then return ""
+        if (!str1.includes(divisor) || !str2.includes(divisor)) {
+            return "";
+        }
+
+        // Split the words up and make sure they split evenly
+        const str1SplitSet: Set<String> = new Set(str1.split(divisor));
+        const str2SplitSet: Set<String> = new Set(str2.split(divisor));
+
+        if (str1SplitSet.size === 1 && str2SplitSet.size === 1) {
+            workingDivisor = divisor;
+        }
+
+    }
+
+    return workingDivisor;
+};
+
+SECOND
+You couldn't really solve it because of this 
+        // If the second word doesn't have the divisor then return ""
+        if (!str1.includes(divisor) || !str2.includes(divisor)) {
+            return "";
+        }
+I would like to think you could have but just didn't because you didn't want to spend the time and because you are a fucktard
+
+
+
+***Count Primes - Medium
+	https://leetcode.com/problems/count-primes/description/
+	Get all primes less than a number ... dang ... I know there are tricks to this ... i need to think.     -When checking if a number is prime you look at 2 first
+    If you check 2 then you don't need to check any other even number, so not 4 or 6 or
+    anything else because then its divisible by 2 also.
+    -You also don't need to look if the number is divisible by any number greater than half the number because at that point it isn't divisible by a whole number
+    -Applying what we said earlier say you check 3, then you don't have to check 6 or 9 for the
+    same reason as 2. but some are also even
+    -Then you check 5, so no 10 or 15
+    -Then you check 7, so no 14 or 21
+    -Then 11, so no 22 or 33
+    -Then 13, so no 26
+    -So as you go up you first check even. But you are also gathering numbers that aren't even or  divisible by the numbers you have already gathered. And looking at what you have so far it looks like you are gathering the prime numbers.
+    Lets see what we can do.
+    Do first just counting up by one to half of the number. Actually first just check if its divisible by 2, if its not 
+    Oh damn ... you were doing the wrong thing ... you started getting into the wrong thing lol
+    So most of what you said matters but not for the final but everything up to it
+    So you have to check every number going up to the number. The whole going up to only half thing was dumb, you were thinking the wrong thing. Wait wait wait, this is all important but only for each number. NOT the actual number. Each number you have to check.
+	Your algorithm isn't fast enough ... fuck ... there is another trick i guess
+	You are NOT getting this ... damn ... this sucks, makes me feel dumb
+	It took you a while but I think you figured out something.
+	It took you a LONG time actually but it looks like it works now
+function countPrimes(n: number): number {
+
+    /*
+    -When checking if a number is prime you look at 2 first
+    If you check 2 then you don't need to check any other even number, so not 4 or 6 or
+    anything else because then its divisible by 2 also.
+    -You also don't need to look if the number is divisible by any number greater than half the number because at that point it isn't divisible by a whole number
+    -Applying what we said earlier say you check 3, then you don't have to check 6 or 9 for the
+    same reason as 2. but some are also even
+    -Then you check 5, so no 10 or 15
+    -Then you check 7, so no 14 or 21
+    -Then 11, so no 22 or 33
+    -Then 13, so no 26
+    -So as you go up you first check even. But you are also gathering numbers that aren't even or  divisible by the numbers you have already gathered. And looking at what you have so far it looks like you are gathering the prime numbers.
+    Lets see what we can do.
+    Do first just counting up by one to half of the number. Actually first just check if its divisible by 2, if its not 
+    Oh damn ... you were doing the wrong thing ... you started getting into the wrong thing lol
+    So most of what you said matters but not for the final but everything up to it
+    So you have to check every number going up to the number. The whole going up to only half thing was dumb, you were thinking the wrong thing. Wait wait wait, this is all important but only for each number. NOT the actual number. Each number you have to check
+    THIS IS NOT FAST ENOUGH
+    */
+
+
+    // If the number is 0 or 1 there are no primes
+    if (n === 0 || n === 1 || n === 2) {
+        return 0;
+    }
+    if (n === 3) {
+        return 1;
+    }
+    if (n === 4 || n === 5) {
+        return 2;
+    }
+    if (n === 6 || n === 7) {
+        return 3;
+    }
+    if (n === 8 || n === 9 || n === 10) {
+        return 4;
+    }
+
+    const primes: number[] = [3, 5, 7];
+
+    for (let x: number = 11; x < n; x = x + 2) {
+        let addPrime: boolean = true;
+        for (let i: number = 0; i < primes.length; i++) {
+            if (primes[i] > x/primes[i]) {
+                break;
+            }
+            if (x % primes[i] === 0) {
+                addPrime = false
+                break;
+            }
+        }
+        if (addPrime) {
+            primes.push(x);
+        }
+    }
+
+    return primes.length + 1;
+    
+};
+
+
+	There are much better ways but fuck it, you got something
+
+FIRST
+function countPrimes(n: number): number {
+
+    /*
+    -When checking if a number is prime you look at 2 first
+    If you check 2 then you don't need to check any other even number, so not 4 or 6 or
+    anything else because then its divisible by 2 also.
+    -You also don't need to look if the number is divisible by any number greater than half the number because at that point it isn't divisible by a whole number
+    -Applying what we said earlier say you check 3, then you don't have to check 6 or 9 for the
+    same reason as 2. but some are also even
+    -Then you check 5, so no 10 or 15
+    -Then you check 7, so no 14 or 21
+    -Then 11, so no 22 or 33
+    -Then 13, so no 26
+    -So as you go up you first check even. But you are also gathering numbers that aren't even or  divisible by the numbers you have already gathered. And looking at what you have so far it looks like you are gathering the prime numbers.
+    Lets see what we can do.
+    Do first just counting up by one to half of the number. Actually first just check if its divisible by 2, if its not 
+    Oh damn ... you were doing the wrong thing ... you started getting into the wrong thing lol
+    So most of what you said matters but not for the final but everything up to it
+    So you have to check every number going up to the number. The whole going up to only half thing was dumb, you were thinking the wrong thing. Wait wait wait, this is all important but only for each number. NOT the actual number. Each number you have to check
+    THIS IS NOT FAST ENOUGH
+    */
+
+
+      if (n < 3) return 0;
+    
+    const count = new Uint8Array(n);
+    let res = 1;
+    
+    for (let i = 3; i < n; i += 2) {
+        if (!count[i]) {
+            res++;
+            console.log('START NEW = ', i);
+            for (let j = i * i; j < n; j += 2 * i) {
+                console.log(j);
+                count[j] = 1;
+            }
+        }
+    }
+    
+    return res;
+};
+
+SECOND
+	You just copied the above one, you forget the algorithm you wrote ... but you figured it out on your own ... I wish you still had it. I bet you could come up with it another time. but for now you need to keep practicing actual stuff so moving on. You hate that you always need to move and drive everywhere, you dont stay concentrated or handle it correctly. And you are trying to see everyone and stuff
+
+***Fizz Buzz - Easy
+	https://leetcode.com/problems/fizz-buzz/description/
+	This one was very simple and probably looks at how you can optimize things. You didnt really but oh well
+
+SAME - but this one is simple ... just do you know %  --- which divides by and return the remainder
+	For example if you have 14 and want the 4 you can do 14 % 10 = 4. Useful for some stuff
+FIRST
+function fizzBuzz(n: number): string[] {
+    const words: string[] = [];
+    for (let i: number = 1; i <= n; i++) {
+        
+        if (i % 3 === 0 && i % 5 === 0) {
+            
+            words.push("FizzBuzz");
+        } else if (i % 5 === 0) {
+            
+            words.push("Buzz");
+        } else if (i % 3 === 0) {
+            
+            words.push("Fizz");
+        } else {
+            
+            words.push(String(i));
+        }
+    }
+
+
+    return words;
+};
+
+SECOND
+function fizzBuzz(n: number): string[] {
+    const t: string[] = [];
+
+    for (let i: number = 1; i <= n; i++) {
+        
+        if (i % 3 == 0 && i % 5 === 0) {
+            t.push("FizzBuzz");
+        } else if (i % 5 === 0) {
+            t.push("Buzz");
+        } else if (i % 3 === 0) {
+            t.push("Fizz");
+        } else {
+            t.push(String(i));
+        }
+    }
+    return t;
+};
+
+
+***Maximum Subarray - Medium
+	https://leetcode.com/problems/maximum-subarray/description/
+	Got a brute force dumb way that causes a timeout ... stupid ... find the better way
+		I think you have done this before and are remembering something
+	YOU COULDN"T FIGURE IT OUT :((((
+	The below funciton is how. To do it you check if the previous numbers plus the one you are on is higher than the one you are on. If the one you are on is higher than the addition using the one you are on. Because the end is the result of the additions, having the ones before it will never make it more if the one you are on is higher ... fuck you derek. REMEMBER THIS!!
+function maxSubArray(nums: number[]): number {
+
+  let local = 0;
+  let global = -Infinity;
+
+  for (const num of nums) {
+    local = Math.max(num, local + num);
+    if (local > global) { 
+        global = local 
+    }
+  }
+
+  return global
+ 
+};
+
+FIRST
+function maxSubArray(nums: number[]): number {
+
+  let local = 0;
+  let global = -Infinity;
+
+  for (const num of nums) {
+    local = Math.max(num, local + num);
+    if (local > global) { 
+        global = local 
+    }
+  }
+
+  return global
+ 
+};
+
+SECOND
+function maxSubArray(nums: number[]): number {
+    let total: number = nums[0];
+    let greatest: number = nums[0];
+
+    for (let i: number = 1; i < nums.length; i++) {
+        total += nums[i];
+        if (total < nums[i]) {
+            total = nums[i];
+        }
+        if (total > greatest) {
+            greatest = total;
+        }
+    }
+    return greatest;
+};
+Copying above from memory
+
+
+
+
+
+
+*Integer to English Words - Hard!!!
+	https://leetcode.com/problems/integer-to-english-words/description/
+	This question seems stupid. 
+	It was you to write how to say a number in english if they give you the number in integers
+	like 123 is "One Hundred Twenty Three". It could go up to billions. I am not wasting my time with this question
+	I am redoing the ones above.
+
+
+***Add Two Number - Medium
+	https://leetcode.com/problems/add-two-numbers/description/
+	You definitely did this one last year ... lets see if you still can
+	Got it, not pretty and maybe not done the best but you finished it
+	Recursive might have been a better way to do it, do that next time
+
+I have done this a few times so my second is almost identical to the first
+
+FIRST
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+    
+    let carryOver: boolean = false;
+    let first: boolean = true;
+    let prevNode: ListNode;
+    let list: ListNode = new ListNode();
+    while (l1 !== null || l2 !== null || carryOver) {
+        const newNode: ListNode = new ListNode();
+
+        let newVal: number = 0;
+        newVal = l1 ? l1.val : 0;
+        newVal = l2 ? newVal + l2.val : newVal;
+        newVal = carryOver ? newVal + 1 : newVal;
+        if (newVal > 9 ) {
+            carryOver = true;
+            newVal = newVal % 10;
+        } else {
+            carryOver = false;
+        }
+        newNode.val = newVal;
+
+        if (first) {
+            list = newNode;
+            prevNode = newNode;
+            first = false;
+        } else {
+            prevNode.next = newNode;
+            prevNode = newNode;
+        }
+
+        l1 = l1 ? l1.next : l1;
+        l2 = l2 ? l2.next : l2;
+
+    }
+
+    return list;
+
+
+};
+
+SECOND
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+
+    if (l1 === null && l2 === null) {
+        return null;
+    }
+    if (l1 === null) {
+        return l2;
+    }
+    if (l2 === null) {
+        return l1;
+    }
+
+    let head: ListNode;
+    let prev: ListNode;
+    let first: boolean = true;
+    let carry: boolean = false;
+
+    while (l1 !== null || l2 !== null || carry) {
+
+        const newNode: ListNode = new ListNode();
+
+        let val = (l1 !== null ? l1.val : 0) + (l2 !== null ? l2.val : 0);
+        if (carry) {
+            val++;
+            carry = false;
+        }
+        if (val > 9) {
+            carry = true;
+            val = val % 10;
+        }
+        newNode.val = val;
+
+        if (first) {
+            first = false;
+            head = newNode;
+            prev = newNode;
+        } else {
+            prev.next = newNode;
+            prev = newNode;
+        }
+
+        l1 = l1 !== null && l1.next !== null ? l1.next : null;
+        l2 = l2 !== null && l2.next !== null ? l2.next : null;
+    }
+
+
+    return head;
+};
+
+
+***Remove Linked List Elements - Easy
+	https://leetcode.com/problems/remove-linked-list-elements/description/
+	Got it but VERY bad with speed and memory .. its because I don't know how to do the ListNode right and when its references and copies. like the deep copy thing in languages. Like is it a copy or just a reference pointer
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function removeElements(head: ListNode | null, val: number): ListNode | null {
+    while (head !== null && head.val === val) {
+        head = head.next;
+    }
+
+    let current = head;
+
+    while (current !== null && current.next !== null) {
+        if (current.next.val === val) {
+            current.next = current.next.next;
+        } else {
+            current = current.next;
+        }
+    }
+
+    return head;
+};
+	
+About is better and look how he keeps track of the first ListNode and it doesn't get lost in reference pointers
+
+Below is how you do it recursively
+function removeElements(head: ListNode | null, val: number): ListNode | null {
+    if (!head) return null;
+    if (head.val === val) {
+        return removeElements(head.next,val);
+    }
+    head.next = removeElements(head.next,val);
+    return head;
+};
+
+
+FIRST
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function removeElements(head: ListNode | null, val: number): ListNode | null {
+    console.log(head);
+    let first = true;
+    let prev: ListNode;
+    let list: ListNode;
+    while (head !== null) {
+        if (head.val === val) {
+            head = head.next;
+            continue;
+        }
+        const newNode = new ListNode(head.val);
+        if (first) {
+            prev = newNode;
+            list = newNode;
+            first = false;
+        } else {
+            prev.next = newNode;
+            prev = newNode;
+        }
+
+        head = head.next;
+
+    }
+    return list ? list : null;
+
+};
+
+SECOND
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function removeElements(head: ListNode | null, val: number): ListNode | null {
+    
+    if (head === null) {
+        return null;
+    }
+
+    let newHead: ListNode;
+    let prev: ListNode;
+    let first: boolean = true;
+    while (head !== null) {
+        if (head.val === val) {
+            head = head.next;
+            continue;
+        }
+        const newNode: ListNode = new ListNode(head.val);
+
+        if (first) {
+            first = false;
+            newHead = newNode;
+            prev = newNode;
+        } else {
+            prev.next = newNode;
+            prev = newNode;
+        }
+
+        head = head.next;
+    }
+
+    return newHead ? newHead : null;
+};
+
+
+***Plus One - Easy
+	https://leetcode.com/problems/plus-one
+	Got it, but my speed is slow ... whatever on this one
+
+FIRST
+
+THIS IS DEFINITELY NOT YOURS!!! YOURS IS GONE SO LOOK AT SECOND
+function plusOne(digits: number[]): number[] {
+    console.log(BigInt(digits.join('')) + BigInt(1));
+    
+    return (BigInt(digits.join('')) + BigInt(1)).toString().split('').map(Number)
+
+    // let carry: boolean = true;
+    // const newDigits: number[] = [];
+    // for (let i: number = digits.length - 1; i >= 0; i--) {
+    //     let newDigit = carry ? digits[i] + 1 : digits[i];
+    //     if (newDigit > 9) {
+    //         carry = true;
+    //         newDigit = newDigit % 10;
+    //     } else {
+    //         carry = false;
+    //     }
+    //     newDigits.unshift(newDigit);
+    // }
+    // if (carry) {
+    //     newDigits.unshift(1);
+    // }
+    // return newDigits;
+};
+
+SECOND - You actually really really sucked ... like embarrassingly bad at this one when you did it the second time
+function plusOne(digits: number[]): number[] {
+
+
+    if (digits === null) {
+        return null
+    }
+    if (digits.length === 0) {
+        return [];
+    }
+  let carry = false;
+  const newDigits: number[] = [];
+
+  let onesVal = digits[digits.length - 1] + 1;
+  if (onesVal > 9) {
+    carry = true;
+    onesVal = onesVal % 10;
+  }
+  newDigits.unshift(onesVal);
+  for (let i: number = digits.length - 2; i >= 0; i--) {
+    let val = digits[i];
+    if (carry) {
+        val += 1;
+        carry = false;
+    }
+    if (val > 9) {
+        carry = true;
+        val = val % 10;
+    }
+    newDigits.unshift(val);
+  }  
+  if (carry) {
+    newDigits.unshift(1);
+  }
+  return newDigits;
+};
+
+
+
+***Validate Binary Search Tree - Medium
+	https://leetcode.com/problems/validate-binary-search-tree/description/
+	You feel like this shouldn't be hard but you keep fucking up and not doing it right. You keep submitting wrong answers ... its fucking dumb, you aren't thinking correctly ... you feel stupid ... but even writing it you felt like you couldn't do it and feel dumb and bad :(. I wish you were smarter than you are. You are finally realizing you aren't as smart as you think :(. Also I feel like you just had a bad understanding of what is ok and what is not ... explination is bad I think ... you are drinking coffee which usually you are like you shouldn't but fuck it you did.
+	Maybe you should just get working like this for days and not do shit ... that will all be there later. I wish it wasn't the summer now ... i feel like i should be out doing stuff.
+	Ok, this question is harder than you thought ... and you failed to get the easy part
+	You are going to make something but then there will be a much more simple better way to do it, you already can tell you are making too much up in your head. But this is taking too long for you. But this is what you knew would happen ... you need to train a lot to get good enough to do this stuff again. You need to go to school to be good enough to work something I think 
+
+	Sucks that you can't do this ... you need to restart it from the beginning ... also its too fucking cold in here
+
+	Uhhh so I think I got it ... it was a bit different than I understood but in the end I got it ... its a bit gross and your logic was ugly ... you tried to rush ... but I guess you got it. See your answer below
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+
+
+ as you go down keep track of what the greatest and the lowest can be and then recalculate them 
+ depending on which side you went to. The greatest and lowest value will change depending on 
+ if you stepped right now not. They don't switch, but the value you test agains.
+ */
+
+// This means in the middle of the highest and lowest allowed which will
+// change as you go in further but will depend on if you are going left or right.
+const inMiddle = (val: number, lowest: number, highest: number): boolean => {
+    if (val >= highest) {
+        return false;
+    }
+    if (val <= lowest) {
+        return false;
+    }
+    return true;
+}
+
+
+function isValidBST(
+    root: TreeNode | null, 
+    lowest: number = -Infinity, 
+    highest: number = Infinity
+): boolean {
+    
+    if (root.left === null && root.right === null) {
+        return true;
+    }
+    if (root.left !== null && (root.val <= root.left.val || !inMiddle(root.left.val, lowest, highest))) {
+        return false;
+    }
+    if (root.right !== null && (root.val >= root.right.val || !inMiddle(root.right.val, lowest, highest))) {
+        return false;
+    }
+
+    const rightOk = root.right ? isValidBST(
+        root.right, 
+        root.val, 
+        highest
+    ) : true;
+    if (!rightOk) {
+        return false;
+    }
+    const leftOk = root.left ? isValidBST(
+        root.left, 
+        lowest, 
+        root.val
+    ) : true;
+    if (!leftOk) {
+        return false;
+    }
+
+    return true;
+
+};
+
+Here is a youtube with someone explaining how they did it
+	https://www.youtube.com/watch?v=35dWETOTKq0
+
+Here is a guy that did it in two lines
+function isValidBST(root: TreeNode|null, min = -Infinity, max = Infinity): boolean {
+  if(!root) return true;
+  return !(root.val <= min || root.val >= max) && isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+};
+This way is almost exactly how you did it but instead of looking ahead he just looks at the one node in particular and keeps track of what the value must be lower than and what it must be higher than. It is the same ... the way the max and min changes you can just change that as you go down ... so no need to look ahead. Just what is that node allowed to be as you traverse.
+
+
+SECOND
+You kinda fucked up at first but then got this
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function isValidBST(
+    root: TreeNode | null,
+    lowest: number = -Infinity,
+    highest: number = Infinity
+): boolean {
+    
+    if (root === null) {
+        return true;
+    }
+    if (root.val <= lowest || root.val >= highest) {
+        return false;
+    }
+
+    let left = isValidBST(root.left ? root.left : null, lowest, root.val);
+    let right = isValidBST(root.right ? root.right : null, root.val, highest);
+
+    if (!left || !right) {
+        return false;
+    }
+
+    return true;
+
+};
+
+
+
+
+
+
+
+
+***Merge two sorted lists - Easy
+	https://leetcode.com/problems/merge-two-sorted-lists
+	I am still so bad with the reference pointer thing here ... like when it will be and when it wont ... after I solve this I am going to have to look at an example becaue I still dont' get it, when and when not exactly
+	I got it but its ugly and I feel like I did shit and didn't really know what I was doing ... look at the other answers
+	I AM SUCKINGG!!! You are fucking dumb!! You weren't doing ordering correctly ... god fucking dammit!!!
+This directly below is my answer
+AND THIS WAS AN EASY ONE AND YOU SUCKED HAHAHAHAHAHAHAH ... we need to do it again
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+    // Take care of the stupid shit
+    if (list1 === null && list2 === null) {
+        return null;
+    }
+    if (list1 === null) {
+        return list2;
+    }
+    if (list2 === null) {
+        return list1;
+    }
+    let head: ListNode;
+    let prev: ListNode;
+    while (list1 !== null || list2 !== null) {
+        const newNode: ListNode = new ListNode();
+        if (list1 === null) {
+            newNode.val = list2.val;
+            list2 = list2.next;
+        } else if (list2 === null) {
+            newNode.val = list1.val;
+            list1 = list1.next;
+        } else if (list1.val < list2.val) {
+            newNode.val = list1.val;
+            list1 = list1.next;
+        } else {
+            newNode.val = list2.val;
+            list2 = list2.next;
+        }
+
+        if (head === undefined) {
+            head = newNode;
+            prev = newNode;
+        } else {
+            prev.next = newNode;
+            prev = newNode;
+        }
+    }
+
+    return head;
+};
+
+Again recursive would be good here but I just am not feeling it in this case. Idk when though cause binary trees I always do recursive ... hmmm
+
+
+SECOND - hahahaha you sucked!!! your first time was wayyyy better!! I AM SUCKINGG!!! You are fucking dumb!! You weren't doing ordering correctly ... god fucking dammit!!!
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+    if (list1 === null && list2 === null) {
+        return null;
+    }
+    if (list1 === null) {
+        return list2;
+    }
+    if (list1 === null) {
+        return list2;
+    }
+
+    let head: ListNode;
+    let prev: ListNode;
+    let first: boolean = true;
+    while (list1 !== null || list2 !== null) {
+
+        if (first) {
+            first = false;
+            if (list1.val >= list2.val) {
+                head = list1;
+                prev = list1;
+                list1 = list1.next;
+            } else {
+                head = list2;
+                prev = list2;
+                list2 = list2.next;
+            }
+            continue;
+        }
+        if (list1 === null) {
+            prev.next = list2;
+            prev = list2;
+            list2 = list2.next;
+            continue;
+        }
+        if (list2 === null) {
+            prev.next = list1;
+            prev = list1;
+            list1 = list1.next
+            continue;
+        }
+        if (list1.val >= list2.val) {
+            prev.next = list2;
+            prev = list2;
+            list2 = list2.next
+        } else {
+            prev.next = list1;
+            prev = list1;
+            list1 = list1.next 
+        }
+
+    }
+
+    return head;
+
+};
+
+
+
+function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+
+    if (list1 === null) {
+        return list2;
+    }
+    if (list2 === null) {
+        return list1;
+    }
+
+    if (l1.val < l2.val) { 
+        l1.next = mergeTwoLists(l1.next, l2); 
+        return l1;
+    } else { 
+        l2.next = mergeTwoLists(l1, l2.next);
+        return l2;
+    }
+};
+
+Remember when looking at this the l1 and l2 are just the single node. NOT the how linked list. One just points the next ... not the whole thing
+
+
+
+
+
+
+
+

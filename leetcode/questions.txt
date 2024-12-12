@@ -1,0 +1,62 @@
+
+Leet code questions to help repo
+  https://github.com/krishnadey30/LeetCode-Questions-CompanyWise/blob/fb5f78b55eead7f948aada8459c5bfd31ae8abbc/capital-one_2year.csv?fbclid=IwZXh0bgNhZW0CMTAAAR041Q3qfvFVXGEh7fnbz0NVYchB0aHG9pvGNcYDo50w12ZUhm8mzIE1FxM_aem_rTC20Ej_BAI0BzfhcjvTgQ
+
+
+Leet Code Questions
+Summary Ranges - Easy
+https://leetcode.com/problems/summary-ranges/description/
+
+Binary Tree Pruning - Medium
+https://leetcode.com/problems/binary-tree-pruning/description/
+
+Odd Even Linked List - Medium
+https://leetcode.com/problems/odd-even-linked-list/description/
+
+Word Pattern - Easy
+https://leetcode.com/problems/word-pattern/description/
+
+Copy List with Random Pointer - Medium
+https://leetcode.com/problems/copy-list-with-random-pointer/description/
+
+Greatest Common Divisor of Strings - Easy
+https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
+
+Count Primes - Medium
+https://leetcode.com/problems/count-primes/description/
+
+Fizz Buzz - Easy
+https://leetcode.com/problems/fizz-buzz/description/
+
+Maximum Subarray - Medium
+https://leetcode.com/problems/maximum-subarray/description/
+
+Integer to English Words - Hard
+https://leetcode.com/problems/integer-to-english-words/description/
+
+Add Two Numbers - Medium
+https://leetcode.com/problems/add-two-numbers/description/
+
+Remove Linked List Elements - Easy
+https://leetcode.com/problems/remove-linked-list-elements/description/
+
+Plus One - Easy
+https://leetcode.com/problems/plus-one
+
+Validate Binary Search Tree - Medium
+https://leetcode.com/problems/validate-binary-search-tree/description/
+
+Merge Two Sorted Lists - Easy
+https://leetcode.com/problems/merge-two-sorted-lists
+
+Maximum of Absolute Value Expression - Medium
+https://leetcode.com/problems/maximum-of-absolute-value-expression/
+
+Number of Subarrays with Bounded Maximum - Medium
+https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/description/
+
+Range Sum Query - Immutable
+https://leetcode.com/problems/range-sum-query-immutable/description/
+
+Range Sum Query - Mutable
+https://leetcode.com/problems/range-sum-query-mutable/description/

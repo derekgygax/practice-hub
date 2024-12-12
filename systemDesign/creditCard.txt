@@ -1,0 +1,90 @@
+Card Card
+-User
+-Open credit Card
+-Make payments
+-Pay off credit Card
+-Stats: Daily, Weekly, Monthly
+
+
+The system will run AWS and will have microservices for the backend. They will be horizontally scaled
+with a lambda the starts instances as they are needed.
+
+1. A UI for the user to make requests
+2. An API Gateway that will receive all the requests and send them to the proper microservices
+  a. This will also be used to send the user_id to the microservice using the JWT sent when logged in
+  b. When more than one microservice is needed the API gateway will talk to each
+3. Microservices
+  a. User Management - This is used to create users and on login. Returns the JWT to the API gateway
+    -POST "/user/create" - create user
+    -DELETE "/user/{user_id}" - delete user
+    -GET "/user/{user_id} - Get info about the user
+    -PUT "/user/{user_id}" - make changes for the user
+    -POST "/user/login" - login the user with credentials and send back JWT. NEVER credentials
+    -POST "/user/logout" - log the user out
+    -DB - relational
+      -user table - Encrypt all sensitive info like email, phone, ssn
+        -id
+        -name
+        -email
+        -phone
+        -approved (t/f) - goes through authentication to ensure the user is real
+  b. Card Account Management - Used to create a card and keep track of transactions
+    -POST "/card/create" - create an account with that card type 
+    -DELETE "/card/{account_id}" - delete the account with that card type
+    -POST "/card/{account_id}/addUser" - add a user to the account
+    -POST "/card/{account_id}/addCardNumber" - add a card number to refer to account (like a virtual card and a physical card)
+    -POST "/card/transactions/{tansaction_id}/cancel"
+    -POST "/card/transactions/{tansaction_id}/refund"
+    -POST "/card/transactions/{tansaction_id}/authorize"
+    -POST "/card/transactions/purchase"
+    -GET "/card/transactions/{transaction_id}
+    -GET "/card/statements/{account_id}
+    -GET "/card/statements/{account_id}/{statement_id}
+    -POST "/card/payments/{account_id}/make" - In here store who made the payment (wire, in house, zelle)
+    -GET "/card/payments/{payment_id}
+    -POST "/card/payments/{account_id}/schedule
+    -POST "/card/payments/{account_id}/cancel
+    -DB - relational
+      -account table
+        -id
+        -type
+        -total
+        -creation_time
+        -statement_time
+        -approved (T/F)
+      -user_account table (to add users to one account)
+        -user_id
+        -account_id
+      -transactions table
+        -id
+        -account_id
+        -amount
+        -who - who is changing the amount in the account (could be you paying it off or purchasing it)
+        -time
+      -statements table
+        -id
+        -account_id
+        -time
+        -start_time
+        -end_time
+        -amount
+      -account_card_numbers table
+        -account_id
+        -card_number
+        -type (virtual or physical)
+        -recieved (T/F) - has the user gotten it
+  c. stats - keep track of stats with the card - This will be run automatically by schedule on the microservice
+    -GET "/stats/{stat_id} - get the info of a specific stat
+    -GET "/stats/{account_id} - get all the stats of an account
+    -GET "/stats/{account_id}/daily
+    -GET "/stats/{account_id}/weekly
+    -GET "/stats/{account_id}/monthly
+    -DB - relational
+      -stats table
+        -id
+        -account_id
+        -stat information
+        -type (daily/weekly/monthly)
+        -time
+
+
