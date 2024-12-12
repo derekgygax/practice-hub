@@ -4,62 +4,65 @@ Leet code questions to help repo
 
 
 Leet Code Questions
-Summary Ranges - Easy
-https://leetcode.com/problems/summary-ranges/description/
+  Summary Ranges - Easy
+  https://leetcode.com/problems/summary-ranges/description/
 
-Binary Tree Pruning - Medium
-https://leetcode.com/problems/binary-tree-pruning/description/
+  Binary Tree Pruning - Medium
+  https://leetcode.com/problems/binary-tree-pruning/description/
 
-Odd Even Linked List - Medium
-https://leetcode.com/problems/odd-even-linked-list/description/
+  Odd Even Linked List - Medium
+  https://leetcode.com/problems/odd-even-linked-list/description/
 
-Word Pattern - Easy
-https://leetcode.com/problems/word-pattern/description/
+  Word Pattern - Easy
+  https://leetcode.com/problems/word-pattern/description/
 
-Copy List with Random Pointer - Medium
-https://leetcode.com/problems/copy-list-with-random-pointer/description/
+  Copy List with Random Pointer - Medium
+  https://leetcode.com/problems/copy-list-with-random-pointer/description/
 
-Greatest Common Divisor of Strings - Easy
-https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
+  Greatest Common Divisor of Strings - Easy
+  https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
 
-Count Primes - Medium
-https://leetcode.com/problems/count-primes/description/
+  Count Primes - Medium
+  https://leetcode.com/problems/count-primes/description/
 
-Fizz Buzz - Easy
-https://leetcode.com/problems/fizz-buzz/description/
+  Fizz Buzz - Easy
+  https://leetcode.com/problems/fizz-buzz/description/
 
-Maximum Subarray - Medium
-https://leetcode.com/problems/maximum-subarray/description/
+  Maximum Subarray - Medium
+  https://leetcode.com/problems/maximum-subarray/description/
 
-Integer to English Words - Hard
-https://leetcode.com/problems/integer-to-english-words/description/
+  Integer to English Words - Hard
+  https://leetcode.com/problems/integer-to-english-words/description/
 
-Add Two Numbers - Medium
-https://leetcode.com/problems/add-two-numbers/description/
+  Add Two Numbers - Medium
+  https://leetcode.com/problems/add-two-numbers/description/
 
-Remove Linked List Elements - Easy
-https://leetcode.com/problems/remove-linked-list-elements/description/
+  Remove Linked List Elements - Easy
+  https://leetcode.com/problems/remove-linked-list-elements/description/
 
-Plus One - Easy
-https://leetcode.com/problems/plus-one
+  Plus One - Easy
+  https://leetcode.com/problems/plus-one
 
-Validate Binary Search Tree - Medium
-https://leetcode.com/problems/validate-binary-search-tree/description/
+  Validate Binary Search Tree - Medium
+  https://leetcode.com/problems/validate-binary-search-tree/description/
 
-Merge Two Sorted Lists - Easy
-https://leetcode.com/problems/merge-two-sorted-lists
+  Merge Two Sorted Lists - Easy
+  https://leetcode.com/problems/merge-two-sorted-lists
 
-Maximum of Absolute Value Expression - Medium
-https://leetcode.com/problems/maximum-of-absolute-value-expression/
+  Maximum of Absolute Value Expression - Medium
+  https://leetcode.com/problems/maximum-of-absolute-value-expression/
 
-Number of Subarrays with Bounded Maximum - Medium
-https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/description/
+  Number of Subarrays with Bounded Maximum - Medium
+  https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/description/
 
-Range Sum Query - Immutable - Easy
-https://leetcode.com/problems/range-sum-query-immutable/description/
+  Range Sum Query - Immutable - Easy
+  https://leetcode.com/problems/range-sum-query-immutable/description/
 
-Range Sum Query - Mutable - Medium
-https://leetcode.com/problems/range-sum-query-mutable/description/
+  Range Sum Query - Mutable - Medium
+  https://leetcode.com/problems/range-sum-query-mutable/description/
 
-Move Zeros - Easy
-https://leetcode.com/problems/move-zeroes/description/
+  Move Zeros - Easy
+  https://leetcode.com/problems/move-zeroes/description/
+
+  Rotate Array - Medium
+  https://leetcode.com/problems/rotate-array/description/
