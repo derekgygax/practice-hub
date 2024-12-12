@@ -55,8 +55,11 @@ https://leetcode.com/problems/maximum-of-absolute-value-expression/
 Number of Subarrays with Bounded Maximum - Medium
 https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/description/
 
-Range Sum Query - Immutable
+Range Sum Query - Immutable - Easy
 https://leetcode.com/problems/range-sum-query-immutable/description/
 
-Range Sum Query - Mutable
+Range Sum Query - Mutable - Medium
 https://leetcode.com/problems/range-sum-query-mutable/description/
+
+Move Zeros - Easy
+https://leetcode.com/problems/move-zeroes/description/
