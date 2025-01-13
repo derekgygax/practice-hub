@@ -6,6 +6,8 @@ Companies for Bioinformatics
   Roche
   Eli lilly
   Nanopore Data
+  BioAge
+    https://bioagelabs.com/
   Intellia
     https://www.intelliatx.com/careers/
   Genetec
