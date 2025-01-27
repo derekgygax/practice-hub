@@ -1,0 +1,34 @@
+Using this tutorial
+	https://www.youtube.com/watch?v=GN6ICac3OXY
+
+Make a .gitignore for all venv stuff, besides requirements.txt
+
+Make a .venv for the project and run it (does NOT go to git)
+	python3 -m venv .venv
+	source .venv/bin/activate
+
+Install what is needed in the venv
+	pip install fastapi "uvicorn[standard]"
+
+Lock the necessary things in a requirements.txt file
+	pip freeze > requirements.txt
+
+
+In the project
+	main.py is where everything starts
+
+COMMANDS - in top level of project
+	-uvicorn main:app --reload
+		START the app and reload on changes. main is module, app is instance. in main.py
+		
+
+DOCS by default for API
+	http://localhost:8000/docs
+		so the /docs gives you an interactive documentation on your API
+		You can opent the API points and click "try it out" on the top right to do actually do the end points. HOLY FUCK!
+			EVEN POST!!
+
+
+	http://localhost:8000/redoc
+		so just /redoc after
+		JUST the API documentation. NOT interactive

@@ -1,0 +1,26 @@
+-- Create tables
+-- Create table invent with all columns and everything
+-- name the columns and the data types
+-- postgres datatypes: https://www.postgresql.org/docs/current/datatype.html
+-- CREATE TABLE events (
+--   -- id INT NOT NULL UNIQUE,
+--   -- EVERY table needs a primary key column
+--   --mysql
+--   id INT PRIMARY KEY AUTO_INCREMENT,
+--   --postgres
+--   -- id SERIAL PRIMARY KEY,
+--   -- Make sure the name of the event is greater than 5 characters long
+--   -- https://www.postgresqltutorial.com/postgresql-string-functions/
+--   -- https://www.postgresql.org/docs/9.1/functions-string.html
+--   name VARCHAR(300) NOT NULL CHECK (CHAR_LENGTH(name) > 5),
+--   date_planned TIMESTAMP NOT NULL,
+--   -- You don't store images in a database!!
+--   -- Take too much space and slow database!!
+--   -- Store the path to the file on the database
+--   image VARCHAR(300),
+--   description TEXT NOT NULL,
+--   -- Just cause you have a check doesn't mean its not null!!
+--   max_participants INT CHECK (max_participants > 0),
+--   -- This ensures that every age is greater than 0 or the addition is block
+--   min_age INT CHECK (min_age > 0)
+-- );

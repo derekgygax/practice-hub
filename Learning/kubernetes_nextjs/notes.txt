@@ -1,0 +1,7 @@
+Article on how to do a Kubernets cluster with Next.js
+
+	https://medium.com/@martin.hodges/starting-with-next-js-and-kubernetes-349cafdc2aa7
+
+Code for article in 
+	next-js-starter
+

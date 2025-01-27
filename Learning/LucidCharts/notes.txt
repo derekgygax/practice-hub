@@ -1,0 +1,48 @@
+Quick tutorial:
+	https://www.youtube.com/watch?v=kM1B-jQUeVI
+
+IMPORTANT
+  Bullets
+    Set it as bullet in the text thing at the top
+    Cmd + Enter to keep the list going
+
+Diagram Definitions
+  UML (Unified Modeling Language)
+    A UML diagram is a way to visualize systems and software using Unified Modeling Language (UML)
+  ERD (Entity-Relationship Diagram) - Database
+    ERD stands for entity relationship diagram. People also call these types of diagrams ER diagrams and Entity Relationship Models. An ERD visualizes the relationships between entities like people, things, or concepts in a database.
+
+    Crows Foot annotation - for entity(DB tables) relationships
+      https://www.freecodecamp.org/news/crows-foot-notation-relationship-symbols-and-how-to-read-diagrams/
+      cardinality = the min and max in a relationship
+      the crows foot annotation shows the min and max of one table to another
+      So in the line connecting, what is on the table is what is expected by the table the line is coming from
+      0 - zero
+      1 - one
+      crows foot - many
+
+      11 - one to one
+      1crows foot - one to many
+
+
+UML class diagrams
+  tutorial - it does system for a zoo hahaha
+    https://www.youtube.com/watch?v=6XrL5jXmTwM&list=PLUoebdZqEHTxx3fS_jyD56QMd4trXZE3D&index=21
+
+Stuff you can do
+  1. Change name in top right
+  2. Drag and drop shapes
+  3. On orage spots around shape drag away and choose new shape for putting in order
+
+Shapes
+  Decision Diamond
+    Has "Yes" and "No" around it
+  Process Shape
+
+
+Style
+  Formatting bar at the top
+  
+
+Share
+  Share button at top right

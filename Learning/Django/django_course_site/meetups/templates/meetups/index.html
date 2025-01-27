@@ -1,0 +1,24 @@
+{% extends "meetups/base/base.html" %}
+{% comment %} for using pieces of other templates, use the extends above {% endcomment %} 
+<!-- FOR DJANGO!!-->
+{% load static %}
+
+{% block title%}All Meetups{% endblock %}
+{% block site_css%}
+  <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+{% endblock %}
+{% block main_heading %}We have great meetups coming up!{% endblock%}
+{% block header_content %}<p>Find the one that best suits your needs!</p>{% endblock%}
+{% block body%}
+  <section>
+    <h2>Upcoming meetups</h2>
+    <ol>
+      {% for meetup in meetups %}
+        {% comment %} Pass data in this. need the 'with' and then you are adding props pretty much {% endcomment %}
+        {% comment %} {% include 'meetups/includes/meetup-item.html' with title=meetup.title location=meetup.location%} {% endcomment %}
+        {% comment %} Setting up getting the image part was NOT basic. you need stuff in the main urls.py AND main settings.py {% endcomment %}
+        {% include 'meetups/includes/meetup-item.html' with title=meetup.title image=meetup.img.url location=meetup.location slug=meetup.slug%}
+      {% endfor %}
+    </ol>
+  </section>
+{% endblock%}

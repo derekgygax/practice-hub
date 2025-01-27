@@ -1,0 +1,17 @@
+-- SELECT *
+-- from events;
+-- SELECT *
+-- from events
+-- WHERE date_planned > '2022-10-21';
+-- SELECT *
+-- from events
+-- WHERE date_planned > '2022-10-21' AND min_age = 20;
+-- SELECT *
+-- from events
+-- WHERE date_planned > '2022-10-21' OR min_age = 20;
+-- SELECT *
+-- from events
+-- ORDER BY id;
+-- SELECT *
+-- from events
+-- ORDER BY id DESC;

@@ -1,0 +1,55 @@
+
+
+Tutorial with Academind and MAX - your boy!
+	url:  https://www.youtube.com/watch?v=t7DrJqcUviA
+	
+
+Make a VENV in VS code - MUST make a venv so you know what packages you are dealign with
+  requirements.txt at top level shows the packages needed (this package.json in TS code)
+  Using the Create Environment command
+  To create local environments in VS Code using a virtual environment, you can follow these steps: 
+    open the Command Palette (⇧⌘P)
+    search for the Python: Create Environment command, and select it.
+
+  UNINSTALL all packages
+    pip freeze | xargs pip uninstall -y
+  INSTALL all in venv on the requirements
+    pip install -r requirements.txt
+      MUST BE IN THE .venv folder
+
+DJANGO stuff
+Install Django
+  python -m pip install Django
+
+RUN project
+  python manage.py runserver
+
+Create project
+  django-admin startproject {PROJECT NAME}
+
+Create app (module) for the project
+  python manage.py startapp meetups
+
+Make the DB
+	Migrate the migrations for the DB
+		python3 manage.py makemigrations
+	Actually migrate
+		python3 manage.py migrate
+
+
+
+Templates - like components in Next.js but not as clean
+	-extends
+	-includes
+	-partial
+
+
+
+
+
+
+
+
+
+
+

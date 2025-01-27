@@ -1,0 +1,291 @@
+Using this tutorial:
+	https://www.freecodecamp.org/news/get-started-with-quarkus-and-jpastreamer-2/?utm_source=chatgpt.com
+	which links to this youtube: https://www.youtube.com/watch?v=KZnQ5R8Kd4I
+
+  this girl suckkkkssss
+  this bitch has given you something that doesn't work with the DB
+    so you are just going to follow along with the code but not be able
+    to connect to her databse, the little shit. And then you can make your
+    own stuff later.
+
+
+BELOW IS NEEDED!! for building native executer
+Making Java 21 your default
+  -in .zshrc add
+    # Make Java 21 your default
+    export JAVA_HOME=/opt/homebrew/opt/openjdk@21
+    export PATH=$JAVA_HOME/bin:$PATH
+
+Get GraalVM
+  -brew install graalvm-21.jdk
+
+  in .zshrc add
+    # GRAALVM setup
+    export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home
+    export PATH="$GRAALVM_HOME/bin:$PATH"
+
+
+ACCIDENTALLY CALLED THE PROJECT (quakus instead of quarkus)
+  quakus-tutorial
+
+Quarkus CLI
+	https://quarkus.io/guides/cli-tooling
+
+
+Create Project
+	Project configurator
+		-https://quarkus.io/
+		-click "start Coiding"
+			https://code.quarkus.io/
+		-Options (have to click more options by the arrow)
+			3.17 io.quakus.platform
+			Group: org.freecodecamp
+			Artifact: quakus-tutorial
+			Build Tool: Maven
+			Verion: 1.0.0-SNAPSHOT
+			Java Version: 17 (you can do 21 in yours, the tutorial does 17)
+			Starter Code: No (we do NOT want a template)
+		-Dependencies (Search and check)
+			JDBC driver mysql postgres
+			hibernate orm with panache
+			resteasy classic jackson
+			jpastreamer
+			smallrye openapi
+		-click generate application to get zip of the project - move and unzip
+			
+
+
+	CLI
+	IntelliJ
+
+FUCK THIS. You made you own DB
+application.properties
+  # General Database Config
+  quarkus.datasource.jdbc.driver=com.mysql.cj.jdbc.Driver
+  quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/sakila
+  quarkus.datasource.username=root
+  quarkus.datasource.password=
+
+
+  # Hibernate Config
+  ## put logs in the database
+  quarkus.hibernate-orm.log.sql=true
+  ## drop/create tables
+  quarkus.hibernate-orm.database.generation=drop-and-create
+
+  Mock data
+
+INSERT INTO sakila.actor (actor_id, first_name, last_name, last_update) VALUES
+(1, 'John', 'Doe', NOW()),
+(2, 'Jane', 'Smith', NOW()),
+(3, 'Tom', 'Johnson', NOW()),
+(4, 'Emily', 'Davis', NOW()),
+(5, 'Michael', 'Brown', NOW()),
+(6, 'Sarah', 'Taylor', NOW()),
+(7, 'Chris', 'Wilson', NOW()),
+(8, 'Anna', 'Moore', NOW()),
+(9, 'James', 'Anderson', NOW()),
+(10, 'Laura', 'Thomas', NOW());
+
+INSERT INTO sakila.film (film_id, title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length, replacement_cost, rating, last_update) VALUES
+(1, 'Thriller A', 'A thrilling adventure', 2020, 1, NULL, 5, 2.99, 120, 19.99, 'PG_13', NOW()),
+(2, 'Action B', 'An action-packed journey', 2019, 1, NULL, 7, 3.99, 130, 24.99, 'R', NOW()),
+(3, 'Drama C', 'A dramatic tale', 2018, 1, NULL, 4, 1.99, 100, 14.99, 'PG', NOW()),
+(4, 'Comedy D', 'A lighthearted comedy', 2021, 1, NULL, 6, 3.49, 110, 21.99, 'G', NOW()),
+(5, 'Adventure E', 'An epic adventure', 2022, 1, NULL, 5, 2.79, 115, 20.99, 'PG', NOW()),
+(6, 'Fantasy F', 'A magical fantasy', 2017, 1, NULL, 6, 2.89, 140, 18.99, 'PG_13', NOW()),
+(7, 'Sci-Fi G', 'A futuristic saga', 2016, 1, NULL, 8, 3.59, 135, 23.99, 'R', NOW()),
+(8, 'Horror H', 'A spooky horror story', 2015, 1, NULL, 3, 1.79, 95, 13.99, 'PG_13', NOW()),
+(9, 'Documentary I', 'An insightful documentary', 2023, 1, NULL, 4, 1.99, 90, 10.99, 'G', NOW()),
+(10, 'Romantic J', 'A heartwarming romance', 2023, 1, NULL, 5, 2.49, 105, 15.99, 'PG', NOW());
+
+INSERT INTO sakila.film_actor (film_id, actor_id) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(4, 7),
+(5, 8),
+(5, 9),
+(6, 10);
+
+INSERT INTO sakila.Film_specialFeatures (Film_film_id, special_features) VALUES
+(1, 'Trailers,Commentaries'),
+(2, 'Deleted Scenes'),
+(3, 'Behind the Scenes'),
+(4, 'Trailers'),
+(5, 'Deleted Scenes'),
+(6, 'Behind the Scenes'),
+(7, 'Commentaries'),
+(8, 'Trailers'),
+(9, 'Deleted Scenes'),
+(10, 'Behind the Scenes');
+
+
+
+          IGNORE THIS
+          Get DB for the tutorial
+
+            NEED TO DO - go in the docker container and change the bind address for mysql
+              docker exec -it sakila bash
+              sed -i 's/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+            This tutorial uses a database of films and actors in the project. There is a docker image with the database. You are pulling it down with the command below. The database is in the docker container running then. not a local thing. Below is the command
+              docker run --platform linux/amd64 -d --publish 3306:3306 --name sakila restsql/mysql-sakila
+
+              you can NOT go to the DB from teh command line
+              you must first go in the container wit this
+                docker exec -it sakila bash
+              then
+                mysql -u root -psakila
+              then
+                use sakila
+
+              DB
+                user: root
+                password: sakila
+
+
+
+Generating the JPA streamer meta model
+  Right click on project root folder (quarkus tutorial)
+  Click on Build Module 'quarkus tutorial'
+  Then in the target folder the 'generated-sources' folder holds the meta model
+  Right click on the 'generated-sources' folder and choose mark directory as generated sources root
+
+
+
+Structure in a Quarkus Project
+  -Does similar to Spring Boot
+    -model
+      -Actor
+    -repository
+    -service
+      -ActorService
+    -resource(this is the controller where the end points are)
+      -ActorResource
+
+
+Start your application
+  Development Mode - Enables live coding updates
+    in the terminal in the root level of the project
+      ./mvnw quarkus:dev
+
+
+Put tests that are run everytime restarted in Development mode
+Put in continuous JUnit tests
+  -NEED dependency for JUnit5
+  -NEED surefire-plugin up to date
+  -Create test folder at level of Main in src
+  -The test classes need the annotation @QuarkusTest so they are run atuomatically
+  -good dependency for integration testing REST end points to add to pom.xml
+    Look in the test/FilmResourceTest
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+Attach intelliJ debug to quarkus dev mode
+
+  -Make a run cofiguration in IntelliJ
+      type: Remote JVM debug
+      Leave default but its this
+        Port: 5005
+        Host: localhost
+        command line args: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+        module classpath: quarkus-tutorial
+  
+  -Start the quarkus in debug mode
+    ./mvnw quarkus:dev -Ddebug
+
+  -Run the configuration from above (this is while the quarkus is running in debug)
+
+  You can then add breakpoints in your code
+  If you hit that breakpoint it will pull intelliJ into focus
+
+
+To Package this using Maven in IntelliJ
+  -do clean in lifecycle
+  -right click on project and Rebuild Module 'quarkus-tutorial'   (this is needed because of jpastreamer)
+  -do package in lifecycle
+
+  if you want to put the whole project in a container you need to use the whole folder
+    target/quarkus-app
+
+  if in target/quarkus-app you just run quarkus-run.jar
+     java -jar target/quarkus-app/quarkus-run.jar
+
+
+
+
+Navtive Compilation (in README.md) - This means it is built into binary direclty so it does NOT need a JVM. Better for cloud native and serverless
+also gets rid of unused code. Takes a long time running!
+  You can create a native executable using:
+
+  ```shell script
+  ./mvnw package -Dnative
+  ```
+
+  Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+
+  ```shell script
+  ./mvnw package -Dnative -Dquarkus.native.container-build=true
+  ```
+
+  You can then execute your native executable with: `./target/quakus-tutorial-1.0.0-SNAPSHOT-runner`
+
+  If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+
+  I am running (I have GraalVM) (finallly after setting up Java as 21 and getting GraalVM it is running)
+    ./mvnw package -Dnative
+    
+  Creates a runner file at the root in the targe folder. ends with SNAPSHOT-runner
+    in mine: 
+      quakus-tutorial-1.0.0-SNAPSHOT-runner
+    run by (in project (it is an executable))
+      ./target/quakus-tutorial-1.0.0-SNAPSHOT-runner
+
+
+  
+
+
+
+
+short cuts to restart the running
+  s - this rebuilds the project
+  r - rerun tests
+
+Port default
+  8080
+
+SWAGGER FOR TESTING!!!
+SWAGGER FOR TESTING!!!
+SWAGGER FOR TESTING!!!
+SWAGGER FOR TESTING!!!
+SWAGGER FOR TESTING!!!
+SWAGGER FOR TESTING!!!
+SWAGGER FOR TESTING!!!
+Has swagger UI - for testing end points (NO POSTMAN)
+  http://localhost:8080/q/swagger-ui/
+
+Has openapi
+  to view
+    http://localhost:8080/q/openapi.json
+  to download (JSON)
+    http://localhost:8080/q/openapi
+  to download (YAML)
+    http://localhost:8080/q/openapi.yaml
+
+
+
+
+
+
+
+
+
+ 

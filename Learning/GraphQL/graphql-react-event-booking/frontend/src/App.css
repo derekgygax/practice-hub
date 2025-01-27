@@ -1,0 +1,4 @@
+.main-content {
+  /* THIS MEANS top and bottom are 4rem and left and right are 2.5 */
+  margin: 4rem 2.5rem;
+}

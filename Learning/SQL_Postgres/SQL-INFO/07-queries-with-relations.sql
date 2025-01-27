@@ -1,0 +1,61 @@
+-- SELECT *
+-- FROM events
+--   INNER JOIN locations ON events.location_id = locations.locations.id;
+-- SELECT *
+-- FROM events AS e
+--   INNER JOIN locations AS loc ON e.location_id = loc.locations.id;
+-- SELECT e.id AS event_id,
+--   e.name,
+--   loc.title,
+--   loc.street,
+--   loc.city_name
+-- FROM events AS e
+--   INNER JOIN locations AS loc ON e.location_id = loc.locations.id;
+--
+-- many to many
+-- INNER JOIN
+-- SELECT e.id AS event_id,
+--   e.name,
+--   e.date_planned,
+--   loc.title,
+--   loc.street,
+--   loc.house_number,
+--   loc.city_name,
+--   u.first_name,
+--   u.last_name
+-- FROM events AS e
+--   INNER JOIN locations AS loc ON e.location_id = loc.locations.id
+--   INNER JOIN events_users AS eu ON eu.event_id = e.id
+--   INNER JOIN users as u ON u.id = eu.user_id;
+--
+--
+-- SELECT * FROM locations AS loc
+-- INNER JOIN events AS eON locations.id = events.location_id;
+--
+-- LEFT JOIN
+-- Get all the rows from left (fisrt) one and then merge
+-- with the table after, but a LOT of nulls if there are no matches
+-- SELECT *
+-- FROM locations AS loc
+--   LEFT JOIN events AS eON locations.id = events.location_id;
+--
+--Muliple left joins
+-- SELECT *
+-- FROM cities AS c
+--   LEFT JOIN locations AS loc on loc.city_name = c.name
+--   LEFT JOIN events AS e ON e.location_id = loc.id;
+--
+--LEFT with INNER
+--   SELECT *
+-- FROM cities AS c
+--   LEFT JOIN locations AS loc on loc.city_name = c.name
+--   INNER JOIN events AS e ON e.location_id = loc.id;
+--
+--LEFT with INNER
+--The filter where ONLY happens after the previous stuff has happened!!
+--Filters on the JOINED tables
+--   SELECT *
+-- FROM cities AS c
+--   LEFT JOIN locations AS loc on loc.city_name = c.name
+--   INNER JOIN events AS e ON e.location_id = loc.id
+-- WHERE c.name='BEDFSD';

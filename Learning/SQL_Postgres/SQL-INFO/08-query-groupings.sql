@@ -1,0 +1,54 @@
+--Group by!!
+--Group by!!
+--Group by!!
+--Group by!!
+--Group by!!
+--HAVING!!!
+--HAVING!!!
+--HAVING!!!
+--HAVING!!!
+--HAVING!!!
+--HAVING!!!
+--HAVING!!!
+-- All the names that start with De and then anything and any amount
+-- SELECT * from users WHERE first_name LIKE 'De%'
+-- All the names that start with De and then one character
+-- SELECT * from users WHERE first_name LIKE 'De_'
+--
+-- Count the number of rows in locations
+-- SELECT COUNT(*)
+-- FROM locations;
+-- -- Sum of the ids
+-- SELECT SUM(id)
+-- FROM locations;
+--
+
+-- https://www.postgresql.org/docs/9.5/functions-aggregate.html
+--
+-- WHERE is BEFORE aggregation
+-- HAVING is AFTER aggregation
+--
+--Group by!!
+-- SELECT c.name,
+--   loc.street,
+--   COUNT(loc.id)
+-- FROM cities
+--   LEFT JOIN location ON locations.city_name = cities.name
+-- GROUP BY c.name,
+--   loc.street;
+--
+-- CAN"T DO THIS!!!
+--   SELECT c.name,
+--   COUNT(loc.id)
+-- FROM cities
+--   LEFT JOIN location ON locations.city_name = cities.name
+-- GROUP BY c.name,
+--  WHERE COUNT(loc.id) > 1;
+--
+-- THIS IS THE RIGHT WAY!!
+-- SELECT c.name,
+--   COUNT(loc.id)
+-- FROM cities
+--   LEFT JOIN location ON locations.city_name = cities.name
+-- GROUP BY c.name
+-- HAVING COUNT(loc.id) > 1;

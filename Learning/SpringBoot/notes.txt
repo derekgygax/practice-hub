@@ -1,0 +1,39 @@
+Youtube: https://www.youtube.com/watch?v=9SGDpanrc8U
+Spring initializr: https://start.spring.io/
+
+When starting a new project go to the initiatlizr page above. In this example I chose
+	-Maven
+	-Java 23
+	-Left
+		Group: com.example	for http://www.vva.us it would be us.vva
+		Artifact: demo		for blog-service it would be blog-service
+		Name: demo		blog-service
+		Description: Demo project for Spring Boot   for blog-service Blog microservice for VVA
+		Package name: com.example.demo		us.vvs.blog-service
+	-Dependencies(on the right)
+		-PostgreSQL
+		-Spring Web
+		-Spring Data JPA
+	Click on Generate
+	Downloads a zip - called it Demo in this case
+	Called Demo!
+
+
+
+IntelliJ - HOT KEYS
+Open project
+    idea .
+	-Control Enter -
+	-Option Shift O - optimize the imports
+	-Command Shift E - get rid of/Show folders on left
+	-Command \ - to split the screen to the right
+	-Command Shift F to search for something by word
+	-Command Shift O to search for file by name
+	-hover Option Enter - gives options to create new function where needed
+
+Maven Repository for Dependencies
+	https://mvnrepository.com/
+
+After adding dependency
+	-In IntelliJ have to right click pom.xml -> maven -> Reload Project
+		Or the dependency will NOT be accepted

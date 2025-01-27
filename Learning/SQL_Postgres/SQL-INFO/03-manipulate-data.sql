@@ -1,0 +1,29 @@
+-- INSERT INTO events (
+--     name,
+--     date_planned,
+--     description,
+--     max_participants,
+--     min_age
+--   )
+-- VALUES (
+--     'tit-nicker',
+--     '2022-10-22 16:30:00',
+--     'This is so you can lick some nitter tits',
+--     50,
+--     5
+--   ),
+--   (
+--     'crap-monger',
+--     '2022-10-20 16:30:00',
+--     'This is so you take some mongers out and crap on them',
+--     10,
+--     6
+--   );
+-- update a column
+-- UPDATE events
+-- SET min_age = 3,
+--   max_participants = 200
+-- WHERE id = 1;
+-- Delete a column
+-- DELETE from events
+-- WHERE id = 2;

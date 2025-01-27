@@ -1,0 +1,45 @@
+{% extends 'meetups/base/base.html' %}
+
+{% comment %} NEEDED for django static {% endcomment %}
+{% load static %}
+{% block title%}{{ meetup.title }}{% endblock %}
+{% block site_css%}
+<link rel="stylesheet" href="{% static 'meetups/styles/meetup-detail.css' %}">
+{% endblock %}
+{% block main_heading %}{{ meetup.title }}{% endblock%}
+{% block body%}
+{% if meetup_found %}
+<article>
+  <img id="main-image" src="{{ meetup.img.url }}" alt="{{ meetup.title }}">
+  <section>
+    <h2>Meetup Location</h2>
+    <address>This meetup takes place in <span>{{ meetup.location.name }}</span> {{ meetup.location.address }}.</ADDREss>
+    </address>
+  </section>
+  <section id="details">
+    <h2>What's this meetup about?</h2>
+    <p>{{meetup.description}}</p>
+    <footer>
+      <p>Need more deatils? <a href="mailto:{{ organizer.email }}">Contact</a></p>
+    </footer>
+  </section>
+  <section id="registration">
+    <h2>Join us!</h2>
+    {% comment %} Specify how the form will submit stuff {% endcomment %}
+    <form action="{% url 'meetup-detail' meetup.slug %}" method="POST">
+      {% comment %} This is a token to protect against other things {% endcomment %}
+      {% csrf_token %}
+      <ul>
+        {% comment %} This will make the form list, could do as_p also {% endcomment %}
+        {{registration_form.as_ul}}
+      </ul>
+      <div id="registration-actions">
+        <button>Register</button>
+      </div>
+    </form>
+  </section>
+</article>
+{% else %}
+<p>NO MEETUP FOUND!!!</p>
+{% endif%}
+{% endblock%}

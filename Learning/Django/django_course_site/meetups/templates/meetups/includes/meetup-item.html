@@ -1,0 +1,21 @@
+<li class="meetup-item">
+  <article>
+    <div class="meetup-summary">
+      <div class="meetup-image">
+        <img src="{{ image }}" alt="{{ title }}">
+      </div>
+      <div class="meetup-details">
+        <h3>{{ title }}</h3>
+        <address>{{ location }}</address>
+      </div>
+    </div>
+    <div class="meetup-actions">
+      {% comment %} 
+      the url thing below is a django thing 
+      So django automatically will make the correct URL
+      'meetup detail' is a name from urls.py and then slug is the dynamic piece it requires
+      {% endcomment %}
+      <a href="{% url 'meetup-detail' slug %}" class="btn">More Details</a>
+    </div>
+  </article>
+</li>

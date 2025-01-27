@@ -1,0 +1,1 @@
+Have small html snippets that can be included all over the place

@@ -1,0 +1,60 @@
+.main-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+  background-color: #5101d1;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-navigation_logo h1 {
+  margin: 0;
+  font-size: 1.5 rem;
+  color: white;
+}
+
+.main-navigation_items {
+  margin-left: 1.rem;
+}
+
+.main-navigation_items ul {
+  display: flex;
+  list-style: none;
+  padding: none;
+  margin: 0;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.main-navigation_items li {
+  margin: 0 1rem;
+
+}
+
+/* This will be the anchor tags!!! by NavLInk */
+.main-navigation_items a,
+.main-navigation_items button {
+  text-decoration: none;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  font: inherit;
+  background: transparent;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.main-navigation_items a:hover,
+.main-navigation_items a:active,
+.main-navigation_items a.active,
+.main-navigation_items button:hover,
+.main-navigation_items button.active {
+  background: white;
+  color: #5101d1;
+  border-radius: 5px;
+}

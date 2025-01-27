@@ -1,0 +1,33 @@
+<!-- FOR DJANGO!!-->
+<!-- The blocks are so you can overwrite and reuse ths template -->
+<!-- YOu will add {extends} in the things taht use is -->
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Define a block piece in the template that can be over written -->
+  <title>{% block title %}DEFAULT VALUE if NOT overwritten{% endblock %}</title>
+  <!-- IMPORT THE CSS relative again but in static -->
+  <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
+  <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+  {% block site_css %}{% endblock %}
+</head>
+
+<body>
+  <header id="main-header">
+    <nav>
+      <a href="/meetups" id="main-logo">Django Meetups</a>
+    </nav>
+    <h1>{% block main_heading %}{% endblock %}</h1>
+    {% block header_content %}{% endblock %}
+  </header>
+  <main>
+    {% block body %}{% endblock %}
+  </main>
+</body>
+
+</html>
