@@ -106,3 +106,9 @@ project.iml
 workspace.xml
 .idea_modules/
 .idea/
+
+
+# KeyCloak Ignore logs and temp files
+learning/KeyCloak/keycloak*/standalone/log/
+learning/KeyCloak/keycloak*/data/
+learning/KeyCloak/keycloak*/tmp/
