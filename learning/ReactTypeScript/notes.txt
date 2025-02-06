@@ -1,0 +1,30 @@
+
+Tutorial:
+  https://www.youtube.com/watch?v=FJDVKeh7RJI
+
+Other docs:
+  
+  // Learn all of Typescript
+  https://www.typescriptlang.org/
+  
+  https://react.dev/reference/react/hooks
+  https://www.codepur.dev/dom-manipulation-in-typescript/
+  https://www.freecodecamp.org/news/use-typescript-with-react/
+  https://medium.com/womenintechnology/mastering-react-with-typescript-its-benefits-and-importance-85cbc783a85a
+  https://handsonreact.com/docs/labs/react-tutorial-typescript
+  https://react.dev/learn/typescript
+
+
+Using VITE
+Create Project (using vite instead of CRA like in tutorial, it is outdated)
+  bun create vite@latest typescript-tutorial --template react-ts
+  cd typescript-tutorial
+  bun install
+
+Run Project (NOTE: the starting commands AND the ports are different than you are used to)
+  bun run dev  (starts the dev)
+    http://localhost:5173/
+  bun run build  (builds the app)
+  bun run preview  (runs the built app)
+    http://localhost:4173/
+

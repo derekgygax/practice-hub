@@ -59,6 +59,8 @@ pnpm-debug.log*
 dist/
 build/
 *.tsbuildinfo
+bun.lockb
+bun.lock
 
 # Lock files
 package-lock.json
