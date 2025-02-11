@@ -1,0 +1,256 @@
+
+
+Documentations and Intro
+https://docs.snowflake.com/en/learn-tutorials?utm_source=chatgpt.com
+https://docs.snowflake.com/en/user-guide/tutorials/snowflake-in-20minutes
+
+Intro to Snowflake
+  https://docs.snowflake.com/en/user-guide-intro
+
+Query syntax
+  https://docs.snowflake.com/en/sql-reference/constructs
+
+Data Manipulation Language(DML) commands
+  https://docs.snowflake.com/en/sql-reference/sql-dml
+
+Snowflake:
+  A data warehouse
+  Works similar to SQL
+  NOT married to AWS, Azure, or Google Cloud
+  NOT FREE!!!!
+    Costs per use just like AWS and other cunts
+
+SnowSQL
+  Snowflake command line query tool
+
+Has extension for VS code
+
+Data Warehouse:
+  -Stores data columnar
+    Columnar (Snowflake, BigQuery)
+      ID: 1, 2 | Name: Alice, Bob | Age: 25, 30 | City: New York, LA
+    Row like PostgreSQL
+      1, Alice, 25, New York | 2, Bob, 30, LA
+  -Immutable columns
+    If try to update row then makes new column but saves in Time Travel(named like a fucking idject, they probably paid someone thousands to come up with that name)
+
+
+Basic Snowflake Knowledge (Enough to Talk About It)
+  Snowflake is a cloud-based SQL data warehouse.
+  It separates compute from storage, so queries scale automatically without tuning.
+  It handles structured and semi-structured data (CSV, JSON, Parquet, Avro).
+  It doesn’t need indexing or manual performance tuning like PostgreSQL.
+  Time Travel lets you query past versions of data without restoring backups.
+
+
+What is the point of Snowflake, and why choose it over a regular SQL database (ChatGPT)
+  Snowflake is a cloud-based **data warehouse** designed for handling **large-scale analytics** and **big data processing**. It differs from a regular SQL database (like MySQL, PostgreSQL, or SQL Server) in several key ways:
+
+  ### **Why Use Snowflake Instead of a Regular SQL Database?**
+  1. **Separates Compute & Storage**  
+    - In traditional databases, storage and compute (processing power) are tied together.  
+    - Snowflake **scales them independently**, so you only pay for what you use.
+
+  2. **Auto-Scaling & Performance**  
+    - It can **automatically scale up** during heavy loads and **scale down** when idle.  
+    - Traditional databases require manual tuning and resource management.
+
+  3. **Handles Big Data & Analytics**  
+    - Optimized for **fast queries on massive datasets** (e.g., terabytes or petabytes).  
+    - Regular SQL databases can struggle with large-scale data processing.
+
+  4. **No Server Management**  
+    - Fully **cloud-managed**—no need to maintain hardware, backups, or patches.  
+    - Traditional databases require infrastructure management.
+
+  5. **Built-In Data Sharing & Multi-Cloud**  
+    - Easily share live data across different Snowflake accounts without copying files.  
+    - Works across AWS, Azure, and GCP, unlike traditional databases tied to one provider.
+
+  6. **Automatic Query Optimization & Caching**  
+    - Uses advanced optimizations like automatic **clustering** and **caching** to speed up queries.  
+    - Traditional SQL databases often need manual indexing and query tuning.
+
+  ### **When to Choose Snowflake**
+  - If you need to **analyze massive amounts of data** efficiently.  
+  - If you want **on-demand scaling** without managing servers.  
+  - If your company deals with **data lakes, real-time analytics, or machine learning** workloads.  
+
+  ### **When NOT to Use Snowflake**
+  - If you need a **highly transactional** system (e.g., banking, inventory management).  
+  - If you only store **small datasets** (a regular SQL database is cheaper for that).  
+  - If you need **full control over database infrastructure** (self-hosted databases offer more flexibility).  
+
+  **TL;DR:** Snowflake is great for big data, analytics, and scalability, but not for traditional transactional workloads.
+
+
+  Snowflake is basically **a cloud SQL database built for handling huge amounts of data** without you needing to worry about infrastructure. It’s made for **big queries, analytics, and data warehousing**, not for normal app databases like MySQL or PostgreSQL.  
+
+  ### **Why Use It Instead of a Regular SQL Database?**
+  - **Scales automatically** – No tuning, no servers, it just expands when needed.  
+  - **Fast for big queries** – Designed for **analyzing massive datasets**, not just storing records.  
+  - **Pay-as-you-go** – You only get charged for what you use, unlike traditional databases that need constant resources.  
+  - **Works across cloud providers** – AWS, Azure, GCP—doesn’t matter, it runs everywhere.  
+  - **Handles structured & semi-structured data** – It can handle JSON, Parquet, Avro, etc., unlike normal SQL databases.  
+
+  ### **When It Sucks**  
+  - If you're building a normal web app—use PostgreSQL or MySQL instead.  
+  - If you need real-time, high-speed transactions (like banking).  
+  - If you don’t need **massive-scale analytics**—Snowflake is overkill for small projects.  
+
+  **Bottom line:** If you need a **big-ass SQL database for analytics and data crunching**, Snowflake is great. If you just need a database for an app, stick with the usual SQL options.
+
+
+
+
+
+
+Doing this
+  https://docs.snowflake.com/en/user-guide/tutorials/snowflake-in-20minutes 
+  Note:
+    Snowflake bills a minimal amount for the on-disk storage used for the sample data in this tutorial. 
+    The tutorial provides steps to drop the database and minimize storage cost.
+    Snowflake requires a virtual warehouse to load the data and execute queries. 
+    A running virtual warehouse consumes Snowflake credits. 
+    In this tutorial, you will be using a 30-day trial account, which provides free credits, so you won’t incur any costs.
+
+What you’ll learn
+
+  Create Snowflake objects—You create a database and a table for storing data.
+
+  Install SnowSQL—You install and use SnowSQL, the Snowflake command line query tool.
+
+  Users of Visual Studio Code might consider using the Snowflake Extension for Visual Studio Code instead of SnowSQL.
+
+  Load CSV data files—You use various mechanisms to load data into tables from CSV files.
+
+  Write and execute sample queries—You write and execute a variety of queries against newly loaded data.
+
+
+Create a Snowflake account
+  https://signup.snowflake.com/
+Install SnowSQL
+  https://docs.snowflake.com/en/user-guide/snowsql-install-config
+
+  Your account_name is hard to find but in your account URL
+    https://app.snowflake.com/AZ###/BY###/#/homepage
+    it is AZ###-BY###
+      all lowercase
+    
+
+  Complete the following steps to connect to Snowflake:
+    1.	Open a new terminal window.
+    2.	Execute the following command to test your connection:snowsql -a <account_name> -u <login_name>Enter your password when prompted. Enter !quit to quit the connection. 
+    3.	Add your connection information to the ~/.snowsql/config file:accountname = <account_name>username = <user_name>password = <password> 
+    4.	Execute the following command to connect to Snowflake: snowsql or double click the SnowSQL application icon in the Applications directory. 
+
+    The last thing just says you can run snowsql without other stuff on the command line
+
+Download the files as the zip and run
+  unzip getting-started.zip -d /tmp
+  on a MAC to put them in the temp folder. it ONLY works that way
+
+
+Create database
+  CREATE OR REPLACE DATABASE sf_tuts;
+
+Get DB information
+  SELECT CURRENT_DATABASE(), CURRENT_SCHEMA();
+
+Create table
+  CREATE OR REPLACE TABLE emp_basic (
+   first_name STRING ,
+   last_name STRING ,
+   email STRING ,
+   streetaddress STRING ,
+   city STRING ,
+   start_date DATE
+   );
+
+Create warehouse
+  CREATE OR REPLACE WAREHOUSE sf_tuts_wh WITH
+   WAREHOUSE_SIZE='X-SMALL'
+   AUTO_SUSPEND = 180
+   AUTO_RESUME = TRUE
+   INITIALLY_SUSPENDED=TRUE;
+
+Get current warehouse
+  SELECT CURRENT_WAREHOUSE();
+
+Upload data
+  PUT file://<file-path>[/\]employees0*.csv @sf_tuts.public.%emp_basic;
+  for tutorial
+    PUT file:///tmp/employees0*.csv @sf_tuts.public.%emp_basic;
+
+  This uploads data to a staged area (just a target area where things sit before going in a table)
+
+Copy data into tables
+  COPY INTO emp_basic
+    FROM @%emp_basic
+    FILE_FORMAT = (type = csv field_optionally_enclosed_by='"')
+    PATTERN = '.*employees0[1-5].csv.gz'
+    ON_ERROR = 'skip_file';
+
+Retrieve all data
+  SELECT * FROM emp_basic;
+
+Insert additional rows
+  INSERT INTO emp_basic VALUES
+   ('Clementine','Adamou','cadamou@sf_tuts.com','10510 Sachs Road','Klenak','2017-9-22') ,
+   ('Marlowe','De Anesy','madamouc@sf_tuts.co.uk','36768 Northfield Plaza','Fangshan','2017-1-26');
+
+Query by things
+  SELECT email FROM emp_basic WHERE email LIKE '%.uk';
+  SELECT first_name, last_name, DATEADD('day',90,start_date) FROM emp_basic WHERE start_date <= '2017-01-01';
+
+
+
+Summary and key points
+  In summary, data loading is performed in two steps:
+
+  Stage the data files to load. The files can be staged internally (in Snowflake) or in an external location. In this tutorial, you stage files internally.
+
+  Copy data from the staged files into an existing target table. A running warehouse is required for this step.
+
+  Remember the following key points about loading CSV files:
+
+  A CSV file consists of 1 or more records, with 1 or more fields in each record, and sometimes a header record.
+
+  Records and fields in each file are separated by delimiters. The default delimiters are:
+
+  Records
+  newline characters
+
+  Fields
+  commas
+
+  In other words, Snowflake expects each record in a CSV file to be separated by new lines and the fields (i.e. individual values) in each record to be separated by commas. If different characters are used as record and field delimiters, you must explicitly specify this as part of the file format when loading.
+
+  There is a direct correlation between the fields in the files and the columns in the table you will be loading, in terms of:
+
+  Number of fields (in the file) and columns (in the target table).
+
+  Positions of the fields and columns within their respective file/table.
+
+  Data types, such as string, number, or date, for fields and columns.
+
+  The records will not be loaded if the numbers, positions, and data types don’t align with the data.
+
+  Note
+
+  Snowflake supports loading files in which the fields don’t exactly align with the columns in the target table; however, this is a more advanced data loading topic (covered in Transforming data during a load).
+
+
+Tutorial cleanup (Optional)¶
+  If the objects you created in this tutorial are no longer needed, you can remove them from the system with DROP <object> statements.
+
+  DROP DATABASE IF EXISTS sf_tuts;
+
+  DROP WAREHOUSE IF EXISTS sf_tuts_wh;
+
+Exit the connection
+  To exit a connection, use the !exit command for SnowSQL (or its alias, !disconnect).
+
+  Exit drops the current connection and quits SnowSQL if it is the last connection.
+
+
