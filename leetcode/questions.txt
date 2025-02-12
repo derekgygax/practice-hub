@@ -28,6 +28,9 @@ Leet Code Questions
   Fizz Buzz - Easy
   https://leetcode.com/problems/fizz-buzz/description/
 
+  Longest Common Subsequence - Medium
+  https://leetcode.com/problems/longest-common-subsequence/description/
+
   Maximum Subarray - Medium
   https://leetcode.com/problems/maximum-subarray/description/
 
