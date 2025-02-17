@@ -42,6 +42,7 @@ function plusOne(digits: number[]): number[] {
   if (digits.length === 0) {
     return digits;
   }
+  // console.log(digits);
 
   let carry: boolean = true;
   for (let i = digits.length - 1; i >= 0; i--) {
@@ -63,3 +64,13 @@ function plusOne(digits: number[]): number[] {
 
   return digits;
 };
+
+const inputs: number[][] = [
+  [1, 2, 3],
+  [4, 3, 2, 1],
+  [9]
+]
+
+for (const input of inputs) {
+  plusOne(input);
+}

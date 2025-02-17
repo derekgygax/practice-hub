@@ -69,3 +69,15 @@ Leet Code Questions
 
   Rotate Array - Medium
   https://leetcode.com/problems/rotate-array/description/
+
+  Two Sum - Easy
+  https://leetcode.com/problems/two-sum/description/
+  
+  Best Time to Buy and Sell Stock - Easy
+  https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+
+  Contains Duplicate - Easy
+  https://leetcode.com/problems/contains-duplicate/description/
+
+  Product of Array Except Self - Medium
+  https://leetcode.com/problems/product-of-array-except-self/description/

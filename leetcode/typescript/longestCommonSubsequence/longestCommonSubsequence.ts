@@ -125,32 +125,96 @@ Example 3:
 
 // Let me know if anything needs more clarification! 🚀
 
-// One of the good solutions
-function longestCommonSubsequence(text1: string, text2: string): number {
-  let dp = Array(text1.length + 1).fill(0);
-  for (let j = text2.length - 1; j >= 0; j--) {
-    const curr = Array(text1.length + 1).fill(0);
-    for (let i = text1.length - 1; i >= 0; i--) {
-      console.log(text1[i], text2[j]);
-      if (text1[i] === text2[j]) {
-        console.log(dp);
-        curr[i] = 1 + dp[i + 1];
-      } else {
-        curr[i] = Math.max(curr[i + 1], dp[i]);
-      }
+const longestCommonSubsequence = (t1: string, t2: string): number => {
+  const memo = Array.from({ length: t1.length }, () => {
+    return new Array(t2.length).fill(-1);
+  })
+
+  const lcs = (i: number, j: number): number => {
+
+    if (i < 0 || j < 0) {
+      return 0;
     }
-    dp = curr;
-    console.log(dp);
-    if (j === text1.length - 2) {
-      break;
+
+    if (memo[i][j] !== -1) {
+      return memo[i][j];
     }
+
+    if (t1[i] === t2[j]) {
+      memo[i][j] = lcs(i - 1, j - 1) + 1;
+    } else {
+      memo[i][j] = Math.max(lcs(i - 1, j), lcs(i, j - 1));
+    }
+    return memo[i][j];
   }
 
-  return dp[0];
-};
+  lcs(t1.length - 1, t2.length - 1);
 
-// Doing it with recursion
+  console.log(memo);
+
+  return memo[t1.length - 1][t2.length - 1];
+}
+
+
+
+// const longestCommonSubsequence = (text1: string, text2: string): number => {
+//   console.log(text1, text2);
+//   const memo = Array.from({ length: text1.length }, () => new Array(text2.length).fill(-1));
+
+//   function lcs(i: number, j: number): number {
+
+//     if (i < 0 || j < 0) {
+//       return 0;
+//     }
+
+//     if (memo[i][j] !== -1) {
+//       return memo[i][j];
+//     }
+
+//     if (text1[i] === text2[j]) {
+//       memo[i][j] = lcs(i - 1, j - 1) + 1;
+//     } else {
+//       memo[i][j] = Math.max(lcs(i - 1, j), lcs(i, j - 1));
+//     }
+
+//     return memo[i][j]
+//   }
+
+//   lcs(text1.length - 1, text2.length - 1);
+//   console.log(memo);
+
+//   return memo[text1.length - 1][text2.length - 1];
+// }
+
+
+
+
+// One of the good solutions
 // function longestCommonSubsequence(text1: string, text2: string): number {
+//   let dp = Array(text1.length + 1).fill(0);
+//   for (let j = text2.length - 1; j >= 0; j--) {
+//     const curr = Array(text1.length + 1).fill(0);
+//     for (let i = text1.length - 1; i >= 0; i--) {
+//       console.log(text1[i], text2[j]);
+//       if (text1[i] === text2[j]) {
+//         console.log(dp);
+//         curr[i] = 1 + dp[i + 1];
+//       } else {
+//         curr[i] = Math.max(curr[i + 1], dp[i]);
+//       }
+//     }
+//     dp = curr;
+//     console.log(dp);
+//     if (j === text1.length - 2) {
+//       break;
+//     }
+//   }
+
+//   return dp[0];
+// };
+
+// RECURSVIE!
+// function longestCommonSubsequenceR(text1: string, text2: string): number {
 //   // Build the array of array
 //   const memo = Array.from({ length: text1.length }, () => new Array(text2.length).fill(-1));
 
@@ -159,17 +223,21 @@ function longestCommonSubsequence(text1: string, text2: string): number {
 //     // and if text1 or text2 is longer
 //     // Before anything can get filled in, this part must be hit
 //     if (i < 0 || j < 0) {
+//       console.log("Q", i, j);
 //       return 0
 //     };
 
 //     if (memo[i][j] !== -1) {
+//       console.log("X", i, j);
 //       return memo[i][j];
 //     }
 
 //     if (text1[i] === text2[j]) {
 //       // So i - 1, j - 1 works because it ensures only sequential matches contribute to the LCS.
+//       console.log("Y", i, j);
 //       memo[i][j] = lcs(i - 1, j - 1) + 1;
 //     } else {
+//       console.log("Z", i, j);
 //       memo[i][j] = Math.max(lcs(i - 1, j), lcs(i, j - 1));
 //     }
 
@@ -179,6 +247,21 @@ function longestCommonSubsequence(text1: string, text2: string): number {
 //   return lcs(text1.length - 1, text2.length - 1);
 // }
 
+
+const inputs: string[][] = [
+  // ['abcde', 'ace'],
+  // ['ace', 'abcde'],
+  // ['abc', 'abc'],
+  ['abc', 'def'],
+  // ['bsbininm', 'jmjkbkjkv'],
+  // ['oxcpqrsvwf', 'shmtulqrypy'],
+  // ['abcba', 'abcbcba'],
+  // ['mhunuzqrkzsnidwbun', 'szulspmhwpazoxijwbq']
+]
+
+for (const input of inputs) {
+  console.log(longestCommonSubsequence(input[0], input[1]));
+}
 // Derek ... can't do it
 // interface Occurrence {
 //   sub: string;
@@ -223,17 +306,3 @@ function longestCommonSubsequence(text1: string, text2: string): number {
 
 //   return max;
 // };
-
-const inputs: string[][] = [
-  ['abcde', 'ace'],
-  // ['abc', 'abc'],
-  // ['abc', 'def'],
-  // ['bsbininm', 'jmjkbkjkv'],
-  // ['oxcpqrsvwf', 'shmtulqrypy'],
-  // ['abcba', 'abcbcba'],
-  // ['mhunuzqrkzsnidwbun', 'szulspmhwpazoxijwbq']
-]
-
-for (const input of inputs) {
-  console.log(longestCommonSubsequence(input[0], input[1]));
-}
