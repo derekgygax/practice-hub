@@ -13,7 +13,9 @@ class Trie {
   insert(word) {
     let node = this.root;
     for (let char of word) {
-      if (!node.children[char]) {
+      console.log(char);
+      // if (!Object.hasOwn(node.children, char)) {
+      if (!(char in node.children)) {
         node.children[char] = new TrieNode();
       }
       node = node.children[char];
