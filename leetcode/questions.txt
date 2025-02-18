@@ -2,6 +2,7 @@
 Leet code questions to help repo
   https://github.com/krishnadey30/LeetCode-Questions-CompanyWise/blob/fb5f78b55eead7f948aada8459c5bfd31ae8abbc/capital-one_2year.csv?fbclid=IwZXh0bgNhZW0CMTAAAR041Q3qfvFVXGEh7fnbz0NVYchB0aHG9pvGNcYDo50w12ZUhm8mzIE1FxM_aem_rTC20Ej_BAI0BzfhcjvTgQ
 
+  https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
 
 Leet Code Questions
   Summary Ranges - Easy
