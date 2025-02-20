@@ -1,0 +1,8 @@
+Really great for building charts in React
+
+
+Documentation
+  https://recharts.org/en-US/
+
+Tutorial
+  https://www.youtube.com/watch?v=Fu_YFp-9xoQ
