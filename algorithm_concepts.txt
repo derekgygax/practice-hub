@@ -1,0 +1,30 @@
+
+Patterns to Approach Problems
+  https://hackernoon.com/14-patterns-to-ace-any-coding-interview-question-c5bb3357f6ed?fbclid=IwY2xjawIxYEFleHRuA2FlbQIxMAABHQi-gb9JtRrFNiYv02qs_skDMNxO7gyJ0h6bfVSF63A5Xx9VZUBFLnkndA_aem_kAyu_KiaFpausQmLc78xvA
+
+Use Leetcode to prepare for interview
+  https://leetcode.com/discuss/career/449135/How-to-effectively-use-LeetCode-to-prepare-for-interviews?fbclid=IwY2xjawIxYFNleHRuA2FlbQIxMAABHZQKNJFAT7qebf0uoVx6cndrqX_VW2TkPzvnVD7ZbzOJ8ZlKMNB1XxTf3Q_aem_7b2DrC3iEVD3CtbXrtlYvw
+
+Algorithm Study Guide
+  https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide?fbclid=IwY2xjawIxYFFleHRuA2FlbQIxMAABHba6W4xkitvNWz8uo7iW_0gFVyoBCAjY6ihMPxlHyMXI-aT33NHsmEkkZw_aem_0kZ0-Xk8orUmAtT85JW1OQ
+
+Add Two Numbers - Linked List
+  https://leetcode.com/problems/add-two-numbers/solutions/1340/a-summary-about-how-to-solve-linked-list-problem-c/?fbclid=IwY2xjawIxYE9leHRuA2FlbQIxMAABHd9-ayeM0t8boRYe2PompVEYPKzgn6gezYMm3xofTWIfjxuicTccnIHhgw_aem_qQ6J5m1nos4gdwfo_E_Cew
+
+Binary Search
+  https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems?fbclid=IwY2xjawIxYE5leHRuA2FlbQIxMAABHeIyg5bOHNB3CWUNL-6ua0A-qxv1cFnpKZ0kF9IdkhYImCnhQOrUlictuQ_aem_4HxuVDKRxGp-FOjFCTiFQA
+
+Sliding Window Substring
+  https://leetcode.com/problems/find-all-anagrams-in-a-string/solutions/92007/sliding-window-algorithm-template-to-solve-all-the-leetcode-substring-search-problem/?fbclid=IwY2xjawIxYExleHRuA2FlbQIxMAABHeIyg5bOHNB3CWUNL-6ua0A-qxv1cFnpKZ0kF9IdkhYImCnhQOrUlictuQ_aem_4HxuVDKRxGp-FOjFCTiFQA
+
+Two Pointers - Subarray Sum
+  https://leetcode.com/problems/subarray-sum-equals-k/solutions/301242/General-summary-of-what-kind-of-problem-can-cannot-solved-by-Two-Pointers/?fbclid=IwY2xjawIxYEpleHRuA2FlbQIxMAABHQi-gb9JtRrFNiYv02qs_skDMNxO7gyJ0h6bfVSF63A5Xx9VZUBFLnkndA_aem_kAyu_KiaFpausQmLc78xvA
+
+Graph Algorithm
+  https://leetcode.com/discuss/general-discussion/969327/graph-algorithms-one-place-dijkstra-bellman-ford-floyd-warshall-prims-kruskals-dsu?fbclid=IwY2xjawIxYElleHRuA2FlbQIxMAABHQoqHFVvb66rokbZ8nv7zx7nrHS5w0an0bF8QuxOt7mwPFbibeRNZstdfg_aem_4VkqSeF6sjUL_YKkexCOzw
+
+Dynamic Programming (DP)
+  https://leetcode.com/discuss/general-discussion/662866/dp-for-beginners-problems-patterns-sample-solutions?fbclid=IwY2xjawIxYERleHRuA2FlbQIxMAABHeIyg5bOHNB3CWUNL-6ua0A-qxv1cFnpKZ0kF9IdkhYImCnhQOrUlictuQ_aem_4HxuVDKRxGp-FOjFCTiFQA
+
+Permutations - this is important for Amazon
+  https://leetcode.com/problems/permutations/solutions/18284/Backtrack-Summary:-General-Solution-for-10-Questionsh/?fbclid=IwY2xjawIxYENleHRuA2FlbQIxMAABHafWCZmALQwQhyl8mAIQH0vIIhcMsJJqAL4-LY4rzDGaKXMEQVoa7ai5lQ_aem_FoUklMKvEUvPduYBKlWu4g
