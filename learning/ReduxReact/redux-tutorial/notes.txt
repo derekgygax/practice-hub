@@ -1,0 +1,63 @@
+Redux
+  https://react-redux.js.org/
+
+Using this tutorial:
+	https://www.youtube.com/watch?app=desktop&v=-ovliZG617g&t=0s
+
+INFO
+  State is immutable
+
+Add Redux to Project - redux toolkit used now
+  bun add @reduxjs/toolkit react-redux
+
+Redux DevTools
+  Add this to your browser so you can see redux being used on your browser
+  https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en&pli=1
+
+  On Google Chrome - MAKE SURE TO CLEAR CACHE AND REFRESH IF NOT WORKING!!
+    In inspector go to Redux
+      Choose Inspector in bottom center
+      Can see State, or Diff as you manipulate things
+
+
+Redux Toolkit
+  This is what is used NOW
+  Not all the weird boilerplate that used to be used
+
+Store in Redux
+	Where the state lives
+  Responsible for the data flow
+  
+  Reducer
+    Does the actual state changes
+    Remember the state is immutable so you did NOT directly manipulate the state
+
+Action
+  Dispatch what actually does stuff
+  type: what is going to be doen
+  payload: data
+
+CSS with material UI
+  https://mui.com/material-ui/?srsltid=AfmBOorhTssh9aMR6ztm_0agmrXP-VlPAGraiV7LFORGPw8pS_pZoHj9
+
+Slice
+  Manages the state to the reducer
+  All parts of the piece of that redux state
+
+store/habit-slice.ts
+  This is where everything that deals with the state is defined
+  All the actions and reducers and crap
+
+Setup
+  -store folder
+    Holds all the redux stuff
+
+    -habit-slice: this is where everything that deals with the state is defined
+
+  -App.tsx
+    Wrap the return in the Provider
+    This is what lets the application grab the stuff in the store
+
+  
+
+  

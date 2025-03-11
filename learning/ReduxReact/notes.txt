@@ -1,0 +1,25 @@
+Redux
+  https://react-redux.js.org/
+
+Using this tutorial:
+	https://www.youtube.com/watch?app=desktop&v=-ovliZG617g&t=0s
+
+Add Redux to Project
+  bun add @reduxjs/toolkit react-redux
+
+State is immutable
+
+Store in Redux
+	Where the state lives
+  
+  Reducer
+    Does the actual state changes
+    Remember the state is immutable so you did NOT directly manipulate the state
+
+Action
+  Dispatch what actually does stuff
+  type: what is going to be doen
+  payload: data
+
+
+Notes on the project in the redux-tutorial
