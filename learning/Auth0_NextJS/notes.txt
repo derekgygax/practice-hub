@@ -5,10 +5,18 @@ Trying:
 Tutorial:
     https://www.youtube.com/watch?v=hXdqGHONGvE
 
+    
+
 Auth0 Page stuff
 1. Go to Auth0 site and make account
     https://auth0.com/
 
+2. On Dashboard (manage.auth0.com) click "Create Application"
+3. Name Application 
+    auth0-next15
+4. Choose Regular Web Applications
+5. Click Create
+6. Choode Next.js jas the technology using
 
     
 Next.js stuff
