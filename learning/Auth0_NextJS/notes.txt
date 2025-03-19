@@ -1,11 +1,13 @@
+Auth0 V3
+
 Trying:
     https://auth0.com/docs/quickstart/webapp/nextjs/interactive
 
 
-Tutorial:
+Tutorial: Auth0 V3
     https://www.youtube.com/watch?v=hXdqGHONGvE
 
-    
+
 
 Auth0 Page stuff
 1. Go to Auth0 site and make account
@@ -18,9 +20,12 @@ Auth0 Page stuff
 5. Click Create
 6. Choode Next.js jas the technology using
 
+7. On quckstart it tells you things to set. You set those things in the settings tab on the same project page
     
 Next.js stuff
 
 1. Create Next.js app
     npx create-next-app@latest
 
+2. Make .env file with variables shown in teh quickstart
+    AUTH0_SECRET is made going on the command line and running 
