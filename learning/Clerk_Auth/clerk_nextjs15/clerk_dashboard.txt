@@ -1,0 +1,22 @@
+Set up the password stuff on clerk dashboard
+
+Password Strength
+  dashboard -> configure -> Authentication Strategies -> Password -> Settings Gear
+  Minimum Length
+  Reject compromised
+  Enforce Strength
+  Require 1
+    lowercase
+    uppsercase
+    number
+    special character
+
+Attack Protection
+  dashboard -> Attack Protection
+  Failed Login Attempts
+    Set limit number of times
+    Set time blocked
+
+Restrict SignUp
+  dashboard -> Restrictions
+  People can only signup because they have been invited

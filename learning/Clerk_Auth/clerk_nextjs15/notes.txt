@@ -1,0 +1,57 @@
+Clerk does authentication and works well with Next.js
+docs
+  https://clerk.com/docs
+
+JWT
+MUST build JWT template so can have JWT for microservices architecture
+  https://clerk.com/docs/backend-requests/jwt-templates
+    When you create a JWT you need things like
+      Template name: a unique identifier for the template. When generating a token, you will have to specify the template to use, using this name. This is a required field.
+      Token lifetime: the time in seconds, after which tokens generated with this template will expire. This setting determines the value of the exp claim (i.e. exp=current_time+lifetime). Default is 60 seconds.
+      Token allowed clock skew: the time in seconds, provided as a leeway to account for clock skews between different servers. This setting determines the value of the nbf claim (i.e. nbf=current_time-allowed_clock_skew). Default is 5 seconds.
+      Claims: the actual template that's entered into the JSON editor (see screenshot below). A template is essentially a JSON object that describes what the final token claims will look like (shortcodes can be used here). This is a required field.
+
+  Building a template
+    https://dashboard.clerk.com/apps/app_2uaDHPOcMpWkZo2bMnjisgRjHnn/instances/ins_2uaDHQ1AuF9bhNieCLZyP0Cu4Hv/jwt-templates
+    In this example
+      Name: test
+      Token lifetime: 60 seconds
+      Allowed clock skew: 5 seconds
+
+      Claims: 
+      {
+        "name": "{user.full_name}"
+      }
+
+  Verify on Third Party
+    JWKS(JSON Web Key Set) endpoint from clerk to do it
+
+
+Create Next.js project
+  1. bun create next-app
+
+Create account
+  https://clerk.com/docs/quickstarts/setup-clerk
+  1. Sign in with username, google, etc.
+  2. Name project (I used nextjs15) and click Create Application
+
+Add Clerk to Next.js - steps outlined after creating account
+  1. Add the SDK
+    bun add @clerk/nextjs
+  2. Make .env with provided variables
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    CLERK_SECRECT_KEY
+  3. Add middleware.ts to /src/ - they provide the code to use
+  4. Update /src/app/layout.tsx - they provide the code to use
+
+Build Sign In/Up page and protect routes except signin
+  https://clerk.com/docs/references/nextjs/custom-sign-in-or-up-page
+
+  Add ENV variables defining where sign in/up stuff is
+  Set the CLERK_SIGN_UP_URL environment variable to tell Clerk where the <SignUp /> component is being hosted.
+  Set CLERK_SIGN_UP_FALLBACK_REDIRECT_URL as a fallback URL incase users visit the /sign-up route directly.
+  Set CLERK_SIGN_IN_FALLBACK_REDIRECT_URL as a fallback URL incase users select the 'Already have an account? Sign in' link at the bottom of the component.
+
+Custom Sign Up page
+  https://clerk.com/docs/references/nextjs/custom-sign-up-page
+  
