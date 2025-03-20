@@ -29,3 +29,13 @@ Next.js stuff
 
 2. Make .env file with variables shown in teh quickstart
     AUTH0_SECRET is made going on the command line and running 
+
+
+
+
+
+Refresh JWT (tokens)
+
+
+Verify tokens
+
