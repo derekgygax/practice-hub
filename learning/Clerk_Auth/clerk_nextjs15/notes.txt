@@ -3,28 +3,65 @@ docs
   https://clerk.com/docs
 
 JWT
-MUST build JWT template so can have JWT for microservices architecture
-  https://clerk.com/docs/backend-requests/jwt-templates
-    When you create a JWT you need things like
-      Template name: a unique identifier for the template. When generating a token, you will have to specify the template to use, using this name. This is a required field.
-      Token lifetime: the time in seconds, after which tokens generated with this template will expire. This setting determines the value of the exp claim (i.e. exp=current_time+lifetime). Default is 60 seconds.
-      Token allowed clock skew: the time in seconds, provided as a leeway to account for clock skews between different servers. This setting determines the value of the nbf claim (i.e. nbf=current_time-allowed_clock_skew). Default is 5 seconds.
-      Claims: the actual template that's entered into the JSON editor (see screenshot below). A template is essentially a JSON object that describes what the final token claims will look like (shortcodes can be used here). This is a required field.
+  MUST build JWT template so can have JWT for microservices architecture
+    https://clerk.com/docs/backend-requests/jwt-templates
+      When you create a JWT you need things like
+        Template name: a unique identifier for the template. When generating a token, you will have to specify the template to use, using this name. This is a required field.
+        Token lifetime: the time in seconds, after which tokens generated with this template will expire. This setting determines the value of the exp claim (i.e. exp=current_time+lifetime). Default is 60 seconds.
+        Token allowed clock skew: the time in seconds, provided as a leeway to account for clock skews between different servers. This setting determines the value of the nbf claim (i.e. nbf=current_time-allowed_clock_skew). Default is 5 seconds.
+        Claims: the actual template that's entered into the JSON editor (see screenshot below). A template is essentially a JSON object that describes what the final token claims will look like (shortcodes can be used here). This is a required field.
 
-  Building a template
-    https://dashboard.clerk.com/apps/app_2uaDHPOcMpWkZo2bMnjisgRjHnn/instances/ins_2uaDHQ1AuF9bhNieCLZyP0Cu4Hv/jwt-templates
-    In this example
-      Name: test
-      Token lifetime: 60 seconds
-      Allowed clock skew: 5 seconds
+    Building a template
+      https://dashboard.clerk.com/apps/app_2uaDHPOcMpWkZo2bMnjisgRjHnn/instances/ins_2uaDHQ1AuF9bhNieCLZyP0Cu4Hv/jwt-templates
+      In this example
+        Name: test
+        Token lifetime: 60 seconds
+        Allowed clock skew: 5 seconds
 
-      Claims: 
+        Claims: 
+        {
+          "name": "{user.full_name}"
+        }
+
+    Verify on Third Party
+      JWKS(JSON Web Key Set) endpoint from clerk to do it
+
+  JWT FOR SPECIFIC ORGANIZATION!!!
+  JWT for specific organization!!
+  Clerk lets you be part of many organization at a time
+    -There is an ACTIVE organization which just means the organization you are concentrating on at that time
+    -You can build a JWT template like the followign that is giving you a JWT with the ACTIVE organization role, name, slug, and id
       {
-        "name": "{user.full_name}"
+        "org_name": "{{org.name}}",
+        "org_role": "{{org.role}}",
+        "org_slug": "{{org.slug}}",
+        "org_id": "{{org.id}}"
       }
+    -You can get a list of your organizations on the client side using the following as shown in the component User.tsx
+      const { userMemberships, setActive } = useOrganizationList({
+        userMemberships: true
+      });
+      const organizationMemberships = userMemberships.data;
 
-  Verify on Third Party
-    JWKS(JSON Web Key Set) endpoint from clerk to do it
+      You can then change the ACTIVE organization using the setActive and passing in the id like this
+        {organizationMemberships && organizationMemberships.map((org, index: number) => {
+          return (
+            <div key={index} className="p-3">
+              <p
+                onClick={() => {
+                  console.log(org.organization.name);
+                  if (setActive) {
+                    setActive({
+                      organization: org.organization.id
+                    });
+                  }
+                }}
+              >
+                {org.organization.name}
+              </p>
+            </div>
+          )
+        })}
 
 
 Create Next.js project
@@ -55,3 +92,5 @@ Build Sign In/Up page and protect routes except signin
 Custom Sign Up page
   https://clerk.com/docs/references/nextjs/custom-sign-up-page
   
+
+

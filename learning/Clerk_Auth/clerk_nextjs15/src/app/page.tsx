@@ -8,16 +8,24 @@ export default async function HomePage() {
 
   const authInfo = await auth();
 
+  // console.log(authInfo);
+
   if (!authInfo.userId) {
     return authInfo.redirectToSignIn();
   }
 
   // Get a self built JWT called "test"
   // You set up the JWT on clerk dashboard
-  const token = await authInfo.getToken({
-    template: "orgs"
+  // const token = await authInfo.getToken({
+  //   template: "orgs"
+  // });
+  // console.log(token);
+
+
+  const activeOrgToken = await authInfo.getToken({
+    template: "active_org"
   });
-  // console.log(token); 
+  // console.log(activeOrgToken);
 
   const user = await currentUser();
   // console.log(user);
