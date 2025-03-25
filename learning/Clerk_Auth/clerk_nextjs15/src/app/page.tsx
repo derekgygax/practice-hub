@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   const authInfo = await auth();
 
-  // console.log(authInfo);
+  console.log(authInfo);
 
   if (!authInfo.userId) {
     return authInfo.redirectToSignIn();

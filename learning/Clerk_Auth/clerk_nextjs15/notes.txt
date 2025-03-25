@@ -89,8 +89,14 @@ Build Sign In/Up page and protect routes except signin
   Set CLERK_SIGN_UP_FALLBACK_REDIRECT_URL as a fallback URL incase users visit the /sign-up route directly.
   Set CLERK_SIGN_IN_FALLBACK_REDIRECT_URL as a fallback URL incase users select the 'Already have an account? Sign in' link at the bottom of the component.
 
+  Sign In Redirect Options
+    https://clerk.com/docs/references/javascript/types/sign-in-redirect-options
+
 Custom Sign Up page
   https://clerk.com/docs/references/nextjs/custom-sign-up-page
   
 
 
+
+derek@grassrootsanalytics.com
+CrashTCoot$11

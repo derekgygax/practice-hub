@@ -1,7 +1,58 @@
+// 'use client';
+
+// import { useUser, useSession } from '@clerk/nextjs';
+// import { useState } from 'react';
+
+// export default function ResendVerificationPage() {
+//   const { user, isLoaded: isUserLoaded } = useUser();
+//   const { session, isLoaded: isSessionLoaded } = useSession();
+//   const [resendStatus, setResendStatus] = useState(null);
+
+//   const handleResend = async () => {
+//     if (!isUserLoaded || !isSessionLoaded || !user || !session || !user.emailAddresses || user.emailAddresses.length === 0) {
+//       return;
+//     }
+
+//     try {
+//       const emailAddressId = user.emailAddresses[0].id;
+//       await session.verifyEmailAddress(emailAddressId);
+//       setResendStatus('Verification email resent.');
+//     } catch (error) {
+//       setResendStatus('Error resending verification email.');
+//     }
+//   };
+
+//   if (!isUserLoaded || !isSessionLoaded) {
+//     return <p>Loading...</p>;
+//   }
+
+//   if (!user || !user.emailAddresses || user.emailAddresses.length === 0) {
+//     return <p>User not logged in or no email address found.</p>;
+//   }
+
+//   return (
+//     <div>
+//       <button onClick={handleResend}>Resend Verification Email</button>
+//       {resendStatus && <p>{resendStatus}</p>}
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 "use client"
 
 import { printJWT } from "@/app/actions/clicks";
-import { CreateOrganization, UserButton, UserProfile, useUser } from "@clerk/nextjs";
+import { CreateOrganization, UserButton, UserProfile, useUser, useSession } from "@clerk/nextjs";
 
 import { useOrganization, useOrganizationList } from "@clerk/nextjs";
 
